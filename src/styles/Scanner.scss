@@ -13,4 +13,12 @@
     height: 1vh;
     width: 100%;
   }
+
+  .scanline-vertical {
+    position: absolute;
+    background-color: orange;
+    opacity: 0.7;
+    width: 1vh;
+    height: 100%;
+  }
 }
