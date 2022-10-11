@@ -21,7 +21,7 @@ const VerticalSymbols = ({ chars }) => {
 
     const textArray = []
     let n = 0
-    while (n < random(25, 75)) {
+    while (n < random(50, 100)) {
       textArray.push(chars[random(chars.length)])
       n += 1
     }
@@ -35,7 +35,7 @@ const VerticalSymbols = ({ chars }) => {
       } else {
         ref.current.style.bottom = `${(parseInt(ref.current.style.bottom) + random(-2)) % 5}%`
       }
-    }, 1000)
+    }, 20)
 
     return () => {
       clearInterval(movement)
