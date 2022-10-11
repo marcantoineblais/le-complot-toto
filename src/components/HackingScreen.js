@@ -1,7 +1,7 @@
-import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { random } from "../helpers"
 import HackingSymbols from "./HackingSymbols"
+import Scanner from "./Scanner"
 
 const HackingScreen = () => {
 
@@ -9,6 +9,8 @@ const HackingScreen = () => {
   const contentRef = useRef()
   const titleRef = useRef()
   const imgRef = useRef()
+
+  const [scanDisplay, setScanDisplay] = useState('none')
 
   useEffect(() => {
     const fadeIn = setTimeout(() => {
@@ -19,29 +21,35 @@ const HackingScreen = () => {
       if (random(100) < 25) {
         contentRef.current.classList.toggle('blink')
       }
-    }, 100)
+    }, 60)
 
-    const changeText = setTimeout(() => {
-      clearInterval(blinking)
-      contentRef.current.classList.remove('blink')
-      titleRef.current.innerHTML = 'MATCH FOUND'
-      // move text box to upper right
+    const scan = setTimeout(() => {
+      titleRef.current.innerHTML = '#$ACCESSING _CAMERA!&'
+      setScanDisplay('block')
+      // Update text box
       setTimeout(() => {
-        titleRef.current.innerHTML = "IDENTITY CONFIRMED"
-        contentRef.current.classList.add('right-corner')
-        contentRef.current.style.transform = "none"
-
-        // add picture of Toto
+        setScanDisplay("none")
+        titleRef.current.innerHTML = 'MATCH FOUND'
+        // move text box to upper right
         setTimeout(() => {
-          imgRef.current.classList.remove('no-display')
-        })
-      }, 1000)
-    }, 6000)
+          clearInterval(blinking)
+          contentRef.current.classList.remove('blink')
+          titleRef.current.innerHTML = "IDENTITY CONFIRMED"
+          contentRef.current.classList.add('right-corner')
+          contentRef.current.style.transform = "none"
+          
+          // add picture of Toto
+          setTimeout(() => {
+            imgRef.current.classList.remove('no-display')
+          })
+        }, 1000)
+      }, 4000)
+    }, 5000)
 
     return () => {
       clearTimeout(fadeIn)
       clearInterval(blinking)
-      clearTimeout(changeText)
+      clearTimeout(scan)
     }
   }, [])
 
@@ -50,9 +58,10 @@ const HackingScreen = () => {
       <div className="red-bg blink" ref={bgRef}>
         <div>
           <HackingSymbols />
+          <Scanner display={scanDisplay}/>
         </div>
         <div ref={contentRef} className="content">
-          <h1 ref={titleRef}>$HACKING_ <br /> #{'>'}CAMERA+</h1>
+          <h1 ref={titleRef}>$HACKING_ <br /> #{'>'}DEVICE+</h1>
           <img ref={imgRef} className="no-display" src="./images/toto-avatar.png" alt="avatar de Toto" />
         </div>
       </div>
