@@ -29,7 +29,12 @@ const VerticalSymbols = ({ chars }) => {
 
     
     const movement = setInterval(() => {
-      ref.current.style.left = `${(parseInt(ref.current.style.left) + random(2)) % 98}%`
+      ref.current.style.left = `${(parseInt(ref.current.style.left) + random(5)) % 98}%`
+      if (ref.current.style.top) {
+        ref.current.style.top = `${(parseInt(ref.current.style.top) + random(-2)) % 5}%`
+      } else {
+        ref.current.style.bottom = `${(parseInt(ref.current.style.bottom) + random(-2)) % 5}%`
+      }
     }, 100)
 
     return () => {
