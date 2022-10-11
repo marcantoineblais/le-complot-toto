@@ -35,7 +35,7 @@ const VerticalSymbols = ({ chars }) => {
       } else {
         ref.current.style.bottom = `${(parseInt(ref.current.style.bottom) + random(-2)) % 5}%`
       }
-    }, 100)
+    }, 1000)
 
     return () => {
       clearInterval(movement)
