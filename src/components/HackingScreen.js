@@ -4,7 +4,7 @@ import HackingSymbols from "./HackingSymbols"
 import InfoToto from "./InfoToto"
 import Scanner from "./Scanner"
 
-const HackingScreen = () => {
+const HackingScreen = ({ done }) => {
 
   const bgRef = useRef()
   const contentRef = useRef()
@@ -13,6 +13,7 @@ const HackingScreen = () => {
 
   const [scanDisplay, setScanDisplay] = useState('none')
   const [infoBox, setInfoBox] = useState(false)
+
 
   useEffect(() => {
     const fadeIn = setTimeout(() => {
@@ -65,7 +66,7 @@ const HackingScreen = () => {
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>$HACKING_ <br /> #{'>'}DEVICE+</h1>
           <img ref={imgRef} className="no-display" src="./images/toto-avatar.png" alt="avatar de Toto" />
-          {infoBox ? <InfoToto /> : null}
+          {infoBox ? <InfoToto done={done} /> : null}
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { random } from "../../helpers"
 
-const Relatives = ({ chars }) => {
+const Relatives = ({ chars, done }) => {
 
   const [text, setText] = useState("")
   const textRef = useRef()
@@ -10,6 +10,7 @@ const Relatives = ({ chars }) => {
     const relatives = "FAMILLE PROCHE: . . .".split("")
     let i = 0
     let n = 0
+    let blinking
     const textTimer = setInterval(() => {
       if (i < relatives.length) {
         setText([...relatives.slice(0, i), chars[random(chars.length)]].join(""))
@@ -22,7 +23,7 @@ const Relatives = ({ chars }) => {
         clearInterval(textTimer)
         setText(relatives.join(""))
         setTimeout(() => {
-          setInterval(() => {
+          blinking = setInterval(() => {
             textRef.current.classList.toggle('blink')
           }, 500)
         }, 100)
@@ -31,6 +32,7 @@ const Relatives = ({ chars }) => {
 
     return () => {
       clearInterval(textTimer)
+      clearInterval(blinking)
     }
   }, [chars])
 

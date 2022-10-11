@@ -4,7 +4,7 @@ import Name from "./info-toto/Name"
 import Relatives from "./info-toto/Relatives"
  
 
-const InfoToto = () => {
+const InfoToto = ({ done }) => {
 
   const [showName, setShowName] = useState(false)
   const [showAge, setShowAge] = useState(false)
@@ -16,21 +16,32 @@ const InfoToto = () => {
   useEffect(() => {
     const writeText = setTimeout(() => {
       infoRef.current.style.display = "flex"
+      // START NAME SEQUENCE
       setShowName(true)
       setTimeout(() => {
+
+        //START AGE SEQUENCE
         setShowName(false)
         setShowAge(true)
+
+        //START RELATIVES SEQUENCE
         setTimeout(() => {
           setShowAge(false)
           setShowRelatives(true)
-        },5000)
-      }, 4200)
+          setTimeout(() => {
+
+            //STOP INFO SEQUENCES
+            clearTimeout(writeText)
+            done()
+          }, 5000)
+        }, 5000)
+      }, 4500)
     }, 2000)
 
     return () => {
       clearTimeout(writeText)
     }
-  }, [])
+  }, [done])
 
   return (
     <div ref={infoRef} className="info-toto">
@@ -40,7 +51,7 @@ const InfoToto = () => {
         {showAge ? <Age chars={chars} /> : null}
         {showRelatives ? <Relatives chars={chars} /> : null}
       </div>
-      <div className="bottom-span">{'<span>'}</div>
+      <div className="bottom-span">{'</span>'}</div>
     </div>
   )
 }
