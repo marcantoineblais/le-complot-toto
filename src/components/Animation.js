@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
+import HackingScreen from "./HackingScreen"
 import LoadingScreen from "./LoadingScreen"
 
 const Animation = () => {
@@ -20,9 +21,10 @@ const Animation = () => {
   })
 
   return (
-    <div>
-      {loadingScreen ? <LoadingScreen /> : null }
-    </div>
+    <Fragment>
+      {loadingScreen ? <LoadingScreen /> : null}
+      {hackingScreen ? <HackingScreen /> : null}
+    </Fragment>
   )
 }
 

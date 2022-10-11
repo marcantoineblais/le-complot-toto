@@ -100,3 +100,14 @@ export const split = (arg) => {
   })
   return [keys, values]
 }
+
+// random(min, max)
+// input 1 integer || 2 integers
+// output 1 random integer between 0 and max value || min and max value
+export const random = (min, max = null) => {
+  if (!max) {
+    max = min
+    min = 0
+  }
+  return (Math.floor(Math.random() * (max - min))) + min
+}

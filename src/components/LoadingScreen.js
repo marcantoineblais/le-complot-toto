@@ -15,7 +15,6 @@ const LoadingScreen = () => {
         dots[i].current.classList.toggle('blink')
       }
       i = (i + 1) % (dots.length + 1)
-      console.log(i);
     }, 200)
 
     const fadeOut = setTimeout(() => {
