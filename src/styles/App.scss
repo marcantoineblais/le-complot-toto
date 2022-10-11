@@ -1,19 +1,8 @@
+@import url('./Loading-Screen.scss');
+
 .container {
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     min-height: 100vh;
     max-width: 2400px;
-
-    .construction-en-cours {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 1em;
-    }
-
-    img {
-        margin-top: 3em;
-        height: 480px;
-        object-fit: contain;
-    }
 }
