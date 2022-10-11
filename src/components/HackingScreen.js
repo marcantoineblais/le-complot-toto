@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { random } from "../helpers"
 import HackingSymbols from "./HackingSymbols"
+import InfoToto from "./InfoToto"
 import Scanner from "./Scanner"
 
 const HackingScreen = () => {
@@ -11,11 +12,12 @@ const HackingScreen = () => {
   const imgRef = useRef()
 
   const [scanDisplay, setScanDisplay] = useState('none')
+  const [infoBox, setInfoBox] = useState(false)
 
   useEffect(() => {
     const fadeIn = setTimeout(() => {
       bgRef.current.classList.remove('blink')
-    }, 100)
+    }, 20)
 
     const blinking = setInterval(() => {
       if (random(100) < 25) {
@@ -26,21 +28,21 @@ const HackingScreen = () => {
     const scan = setTimeout(() => {
       titleRef.current.innerHTML = '#$ACCESSING _CAMERA!&'
       setScanDisplay('block')
-      // Update text box
+      // Update text box => MATCH FOUND
       setTimeout(() => {
         setScanDisplay("none")
+        clearInterval(blinking)
+        contentRef.current.classList.remove('blink')
         titleRef.current.innerHTML = 'MATCH FOUND'
-        // move text box to upper right
+        // move text box to upper right => IDENTITY CONFIRMED
         setTimeout(() => {
-          clearInterval(blinking)
-          contentRef.current.classList.remove('blink')
           titleRef.current.innerHTML = "IDENTITY CONFIRMED"
           contentRef.current.classList.add('right-corner')
           contentRef.current.style.transform = "none"
-          
           // add picture of Toto
           setTimeout(() => {
             imgRef.current.classList.remove('no-display')
+            setInfoBox(true)
           })
         }, 1000)
       }, 4000)
@@ -63,6 +65,7 @@ const HackingScreen = () => {
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>$HACKING_ <br /> #{'>'}DEVICE+</h1>
           <img ref={imgRef} className="no-display" src="./images/toto-avatar.png" alt="avatar de Toto" />
+          {infoBox ? <InfoToto /> : null}
         </div>
       </div>
     </div>
