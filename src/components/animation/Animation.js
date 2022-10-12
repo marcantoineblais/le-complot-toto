@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react"
+import React, { Fragment, useEffect, useLayoutEffect, useState } from "react"
 import HackingScreen from "./HackingScreen"
 import LoadingScreen from "./LoadingScreen"
 import ErrorScreen from "./ErrorScreen"
@@ -14,6 +14,9 @@ const Animation = () => {
   const [active, setActive] = useState('loading')
   const chars = ['-','+','@','?','^','!','&','#','%','$','<','>','0','1','2','3','4','5','6','7','8','9']
 
+  useEffect(() => {
+    window.scrollTo(0, 1)
+  })
   
   useEffect(() => {
     
