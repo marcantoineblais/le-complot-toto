@@ -1,31 +1,47 @@
-import React, { useEffect, useRef } from "react"
+import { wait } from "@testing-library/user-event/dist/utils"
+import React, { useEffect, useRef, useState } from "react"
 
-const LoadingScreen = () => {
+const LoadingScreen = ({ setActive }) => {
+
+  const [activeDot, setActiveDot] = useState(0)
 
   const contentRef = useRef()
   const dot1 = useRef()
   const dot2 = useRef()
   const dot3 = useRef()
-  const dots = [dot1, dot2, dot3]
+  
+  
+  useEffect(() => {
+    
+    const dots = [dot1, dot2, dot3]
+    const animate = async () => {
+      await wait(200)
+      if (activeDot < dots.length) {
+        dots[activeDot].current.classList.toggle('blink')
+        setActiveDot(activeDot + 1)
+      } else {
+        setActiveDot(0)
+      }
+    }
+
+    animate()
+
+  }, [activeDot])
 
   useEffect(() => {
-    let i = 0
-    const timer = setInterval(() => {
-      if (i < dots.length) {
-        dots[i].current.classList.toggle('blink')
-      }
-      i = (i + 1) % (dots.length + 1)
-    }, 200)
 
-    const fadeOut = setTimeout(() => {
+    const terminate = async() => {
+      await wait(4000)
       contentRef.current.classList.add('blink')
-    }, 4000)
-
-    return () => {
-      clearInterval(timer)
-      clearTimeout(fadeOut)
+      await wait(1000)
+      setActive('hacking')
     }
-  })
+
+    terminate()
+    
+  }, [setActive])
+
+
 
   return (
     <div className="loading-screen">

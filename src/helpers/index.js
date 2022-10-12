@@ -111,3 +111,22 @@ export const random = (min, max = null) => {
   }
   return (Math.floor(Math.random() * (max - min))) + min
 }
+
+
+// wait(milliseconds)
+// input 1 integer
+// output 1 fulfilled promise after set amount of millisecond
+export const wait = (time) => {
+  return new Promise((r) => setTimeout(r, time))
+}
+
+// promise()
+// input no argument
+// output a new simple resolved promise
+export const promise = (bool = true) => {
+  if (bool) {
+    return new Promise((f) => f)
+  }
+
+  return new Promise((_f, r) => r)
+}

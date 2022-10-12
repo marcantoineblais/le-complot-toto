@@ -4,13 +4,12 @@ import Name from "./info-toto/Name"
 import Relatives from "./info-toto/Relatives"
  
 
-const InfoToto = ({ done }) => {
+const InfoToto = ({ setActive, chars }) => {
 
   const [showName, setShowName] = useState(false)
   const [showAge, setShowAge] = useState(false)
   const [showRelatives, setShowRelatives] = useState(false)
 
-  const chars = ['-','+','@','?','^','!','&','#','%','$','<','>','0','1','2','3','4','5','6','7','8','9']
   const infoRef = useRef()
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const InfoToto = ({ done }) => {
 
             //STOP INFO SEQUENCES
             clearTimeout(writeText)
-            done()
+            setActive('error')
           }, 5000)
         }, 5000)
       }, 4500)
@@ -41,7 +40,7 @@ const InfoToto = ({ done }) => {
     return () => {
       clearTimeout(writeText)
     }
-  }, [done])
+  }, [setActive])
 
   return (
     <div ref={infoRef} className="info-toto">

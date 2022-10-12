@@ -2,41 +2,50 @@ import React, { Fragment, useEffect, useState } from "react"
 import HackingScreen from "./HackingScreen"
 import LoadingScreen from "./LoadingScreen"
 import ErrorScreen from "./ErrorScreen"
+import { wait } from "../helpers"
 
 const Animation = () => {
 
   const [loadingScreen, setLoadingScreen] = useState(true)
   const [hackingScreen, setHackingScreen] = useState(false)
   const [errorScreen, setErrorScreen] = useState(false)
-  const [hackingScreenDone, setHackingScreenDone] = useState(false)
+  const [active, setActive] = useState('loading')
+  const chars = ['-','+','@','?','^','!','&','#','%','$','<','>','0','1','2','3','4','5','6','7','8','9']
 
+  
   useEffect(() => {
     
-    if (hackingScreenDone) {
-      // Start Error Screen
-      setHackingScreen(false)
-      setErrorScreen(true)
-    } else {
-      // Stop Loading Screen
-      setTimeout(() => {
-        setLoadingScreen(false)
-      }, 8000)
+    const animate = async () => {
 
-      // Start Hacking Screen
-      setTimeout(() => {
-        setHackingScreen(true)
-      }, 5000)
+      switch(active) {
+        case 'loading':
+          await wait(5000)
+          setHackingScreen(true)
+          break
+          
+        case 'hacking':
+          setLoadingScreen(false)
+          break
+            
+        case 'error':
+          setHackingScreen(false)
+          setErrorScreen(true)
+          break
+
+        default:
+          setActive('loading')
+      }
     }
+      
+    animate()
     
-  }, [hackingScreenDone])
-
-  const done = () => setHackingScreenDone(true)
+  }, [active])
 
   return (
     <Fragment>
-      {loadingScreen ? <LoadingScreen /> : null}
-      {hackingScreen ? <HackingScreen done={done}/> : null}
-      {errorScreen ? <ErrorScreen /> : null}
+      {loadingScreen ? <LoadingScreen setActive={setActive}/> : null}
+      {hackingScreen ? <HackingScreen setActive={setActive} chars={chars}/> : null}
+      {errorScreen ? <ErrorScreen chars={chars} setActive={setActive}/> : null}
     </Fragment>
   )
 }

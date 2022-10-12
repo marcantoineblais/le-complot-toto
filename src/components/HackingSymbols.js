@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react"
 import { random } from "../helpers"
 
-const HackingSymbols = () => {
+const HackingSymbols = ({ chars }) => {
 
   const [symbols, setSymbols] = useState("")
 
   useEffect(() => {
-    const chars = ['-','+','@','?','^','!','&','#','%','$','<','>','0','1','2','3','4','5','6','7','8','9']
     const loadingProgression = setInterval(() => {
       let n = 0
       let characters = []
@@ -15,12 +14,12 @@ const HackingSymbols = () => {
         n += 1
       }
       setSymbols(characters.join(""))
-    }, 5)
+    }, 20)
 
     return () => {
       clearInterval(loadingProgression)
     }
-  }, [symbols])
+  }, [symbols, chars])
 
   return (
     <Fragment>{symbols}</Fragment>

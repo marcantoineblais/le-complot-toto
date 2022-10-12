@@ -4,7 +4,7 @@ import HackingSymbols from "./HackingSymbols"
 import InfoToto from "./InfoToto"
 import Scanner from "./Scanner"
 
-const HackingScreen = ({ done }) => {
+const HackingScreen = ({ setActive, chars }) => {
 
   const bgRef = useRef()
   const contentRef = useRef()
@@ -60,13 +60,13 @@ const HackingScreen = ({ done }) => {
     <div className="hacking-screen">
       <div className="red-bg blink" ref={bgRef}>
         <div>
-          <HackingSymbols />
+          <HackingSymbols chars={chars}/>
           <Scanner display={scanDisplay}/>
         </div>
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>$HACKING_ <br /> #{'>'}DEVICE+</h1>
           <img ref={imgRef} className="no-display" src="./images/toto-avatar.png" alt="avatar de Toto" />
-          {infoBox ? <InfoToto done={done} /> : null}
+          {infoBox ? <InfoToto setActive={setActive} /> : null}
         </div>
       </div>
     </div>
