@@ -1,3 +1,4 @@
+import { wait } from "@testing-library/user-event/dist/utils"
 import React, { useEffect, useRef, useState } from "react"
 import { random } from "../helpers"
 import HackingSymbols from "./HackingSymbols"
@@ -11,50 +12,78 @@ const HackingScreen = ({ setActive, chars }) => {
   const titleRef = useRef()
   const imgRef = useRef()
 
+  const [activeHacking, setActiveHacking] = useState('fadeIn')
+  const [isBlinking, setIsBlinking] = useState(true)
+  const [rng, setRng] = useState(random(10))
   const [scanDisplay, setScanDisplay] = useState('none')
   const [infoBox, setInfoBox] = useState(false)
 
 
   useEffect(() => {
-    const fadeIn = setTimeout(() => {
-      bgRef.current.classList.remove('blink')
-    }, 20)
 
-    const blinking = setInterval(() => {
-      if (random(100) < 25) {
-        contentRef.current.classList.toggle('blink')
-      }
-    }, 60)
+    const animate = async () => {
 
-    const scan = setTimeout(() => {
-      titleRef.current.innerHTML = '#$ACCESSING _CAMERA!&'
-      setScanDisplay('block')
-      // Update text box => MATCH FOUND
-      setTimeout(() => {
-        setScanDisplay("none")
-        clearInterval(blinking)
-        contentRef.current.classList.remove('blink')
-        titleRef.current.innerHTML = 'MATCH FOUND'
-        // move text box to upper right => IDENTITY CONFIRMED
-        setTimeout(() => {
-          titleRef.current.innerHTML = "IDENTITY CONFIRMED"
+      switch(activeHacking) {
+        case 'fadeIn':
+          bgRef.current.classList.remove('blink')
+          await wait(5000)
+          setActiveHacking('scanner')
+          break
+        
+        case 'scanner':
+          titleRef.current.innerHTML = '#$ACCESSING _CAMERA!&'
+          setScanDisplay('block')
+          await wait(4000)
+          setActiveHacking('match')
+          break
+
+        case 'match':
+          setIsBlinking(false)
+          setScanDisplay("none")
+          contentRef.current.classList.remove('blink')
+          titleRef.current.innerHTML = 'MATCH FOUND'
+          await wait(1000)
+          setActiveHacking('identity')
+          break
+
+        case 'identity':
+          imgRef.current.classList.remove('no-display')
+          await wait(500)
           contentRef.current.classList.add('right-corner')
-          contentRef.current.style.transform = "none"
-          // add picture of Toto
-          setTimeout(() => {
-            imgRef.current.classList.remove('no-display')
-            setInfoBox(true)
-          })
-        }, 1000)
-      }, 4000)
-    }, 5000)
+          contentRef.current.style.transform = 'translate(0)'
+          await wait(1000)
+          setInfoBox(true)
+          break
 
-    return () => {
-      clearTimeout(fadeIn)
-      clearInterval(blinking)
-      clearTimeout(scan)
+        default:
+          setActiveHacking(null)
+      }
     }
-  }, [])
+
+    animate()
+
+  }, [activeHacking])
+
+  useEffect(() => {
+
+    const blink = async () => {
+      if (isBlinking) {
+        await wait(50)
+        if (rng < 2) {
+          contentRef.current.classList.add('blink')
+          await wait(50)
+          contentRef.current.classList.remove('blink')
+        } 
+        let num = random(10)
+        while (num === rng) {
+          num = random(10)
+        }
+        setRng(num)
+      }
+    }
+    
+    blink()
+  })
 
   return (
     <div className="hacking-screen">

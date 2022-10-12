@@ -54,9 +54,11 @@
     height: 100%;
     object-fit: contain;
     border-top: solid 5px rgb(150, 0, 0);
+    transition-duration: 500ms;
   }
 
   .no-display {
-    display: none;
+    visibility: hidden;
+    transform: scale(0);
   }
 }
