@@ -1,47 +1,60 @@
 import React, { useEffect, useState } from "react"
-import { random } from "../../helpers"
+import { random, wait } from "../../helpers"
 
-const Name = ({ chars }) => {
+const Name = ({ chars, setActiveInfo }) => {
 
   const [text, setText] = useState(" ")
+  const [textIndex, setTextIndex] = useState(0)
+  const [direction, setDirection] = useState('forward')
+  const name = "[ NOM DE CODE = TOTO ]"
 
   useEffect(() => {
-    const name = "NOM DE CODE: TOTO".split("")
-    let i = 0
-    let n = 0
-    const textTimer = setInterval(() => {
-      if (i < name.length) {
-        setText([...name.slice(0, i), chars[random(chars.length)]].join(""))
-        n += 1
-        if (n === 20) {
-          i += 1
-          n = 0
-        }
-      } else {
-        clearInterval(textTimer)
-        setText(name.join(""))
-        setTimeout(() => {
-          const removeText = setInterval(() => {
-            if (i > 0) {
-              setText([...name.slice(0, i), chars[random(chars.length)]].join(""))
-              n += 1
-              if (n === 20) {
-                i -= 1
-                n = 0
-              }
-            } else {
-              clearInterval(removeText)
-              setText("")
-            }
-          }, 2)
-        }, 1000)
-      }
-    }, 5)
 
-    return () => {
-      clearInterval(textTimer)
+    const animate = async () => {  
+      if (['forward', 'backward'].includes(direction)) {
+        await wait(20)
+        setText(name.slice(0, textIndex) + chars[random(chars.length)])
+      }  
     }
-  }, [chars])
+
+    animate()
+
+  })
+
+  useEffect(() => {
+
+    const animate = async () => {
+      switch(direction) {
+        case 'forward':
+          await wait(100)
+          setTextIndex(textIndex + 1)
+          break
+        
+        case 'changing':
+          setText(name)
+          await wait(1000)
+          setDirection('backward')
+          break
+        
+        case 'backward':
+          await wait(20)
+          setTextIndex(textIndex - 1)
+          break
+
+        default:
+          break
+      }
+    }
+
+    if (textIndex === name.length - 1) {
+      setDirection('changing')
+    } else if (direction === 'backward' && !textIndex) {
+      setActiveInfo('age')
+    }
+    
+    animate()
+
+  }, [textIndex, direction, setActiveInfo])
 
   return (
     <div className="name">{text}</div>

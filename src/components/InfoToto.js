@@ -1,54 +1,65 @@
 import React, { useEffect, useRef, useState } from "react"
+import { wait } from "../helpers"
 import Age from "./info-toto/Age"
 import Name from "./info-toto/Name"
 import Relatives from "./info-toto/Relatives"
  
 
-const InfoToto = ({ setActive, chars }) => {
+const InfoToto = ({ chars, setActive }) => {
 
   const [showName, setShowName] = useState(false)
   const [showAge, setShowAge] = useState(false)
   const [showRelatives, setShowRelatives] = useState(false)
+  const [activeInfo, setActiveInfo] = useState('no-info')
 
   const infoRef = useRef()
 
   useEffect(() => {
-    const writeText = setTimeout(() => {
-      infoRef.current.style.display = "flex"
-      // START NAME SEQUENCE
-      setShowName(true)
-      setTimeout(() => {
 
-        //START AGE SEQUENCE
-        setShowName(false)
-        setShowAge(true)
+    const animate = async () => {
 
-        //START RELATIVES SEQUENCE
-        setTimeout(() => {
+      switch(activeInfo) {
+        case 'no-info':
+          await wait(2000)
+          infoRef.current.style.display = "flex"
+          setActiveInfo('name')
+          break
+        
+        case 'name':
+          setShowName(true)
+          break
+
+        case 'age':
+          setShowName(false)
+          setShowAge(true)
+          break
+
+        case 'relatives':
           setShowAge(false)
           setShowRelatives(true)
-          setTimeout(() => {
+          break
 
-            //STOP INFO SEQUENCES
-            clearTimeout(writeText)
-            setActive('error')
-          }, 5000)
-        }, 5000)
-      }, 4500)
-    }, 2000)
+        case 'error':
+          setShowRelatives(false)
+          setActive('error')
+          break
 
-    return () => {
-      clearTimeout(writeText)
+        default:
+          break
+      }
     }
-  }, [setActive])
+
+    animate()
+
+  }, [activeInfo, setActive])
 
   return (
     <div ref={infoRef} className="info-toto">
       <div className="top-span">{'<span>'}</div>
       <div className="text">
-        {showName ? <Name chars={chars} /> : null}
-        {showAge ? <Age chars={chars} /> : null}
-        {showRelatives ? <Relatives chars={chars} /> : null}
+        {showName ? <Name chars={chars} setActiveInfo={setActiveInfo}/> : null}
+        {showAge ? <Age chars={chars} setActiveInfo={setActiveInfo}/> : null}
+        {showRelatives ? <Relatives chars={chars} setActiveInfo={setActiveInfo}/> : null}
       </div>
       <div className="bottom-span">{'</span>'}</div>
     </div>

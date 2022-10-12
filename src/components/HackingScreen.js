@@ -97,7 +97,7 @@ const HackingScreen = ({ setActive, chars }) => {
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
           <img ref={imgRef} className="zoom-out" src="./images/toto-avatar.png" alt="avatar de Toto" />
-          {infoBox ? <InfoToto setActive={setActive} /> : null}
+          {infoBox ? <InfoToto chars={chars} setActive={setActive} /> : null}
         </div>
       </div>
     </div>

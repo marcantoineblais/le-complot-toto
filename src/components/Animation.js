@@ -9,6 +9,7 @@ const Animation = () => {
   const [loadingScreen, setLoadingScreen] = useState(true)
   const [hackingScreen, setHackingScreen] = useState(false)
   const [errorScreen, setErrorScreen] = useState(false)
+  const [truthScreen, setTruthScreen] = useState(false)
   const [active, setActive] = useState('loading')
   const chars = ['-','+','@','?','^','!','&','#','%','$','<','>','0','1','2','3','4','5','6','7','8','9']
 
@@ -30,6 +31,11 @@ const Animation = () => {
         case 'error':
           setHackingScreen(false)
           setErrorScreen(true)
+          break
+
+        case 'truth':
+          setErrorScreen(false)
+          setTruthScreen(true)
           break
 
         default:

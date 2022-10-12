@@ -1,46 +1,48 @@
 import React, { useEffect, useRef, useState } from "react"
-import { random } from "../helpers"
+import { random, wait } from "../helpers"
 
 const VerticalSymbols = ({ chars }) => {
 
   const [text, setText] = useState("")
+  const [positionX, setPositionX] = useState(random(98))
+  const [positionY, setPositionY] = useState(random(-2, 3))
+  const [orientation] = useState(random(2) ? 'top' : 'bottom')
   const ref = useRef()
 
   useEffect(() => {
+    const animate = async () => {
+      await wait(20)
+      ref.current.style.left = `${positionX}%`
+      if (orientation === 'top') {
+        ref.current.style.top = `${positionY}%`
+      } else {
+        ref.current.style.bottom = `${positionY}%`
+      }
 
-    ref.current.style.left = `${random(0, 98)}%`
-    if (random(2)) {
-      ref.current.style.top = "0"
-      ref.current.classList.remove('bottom')
+      setPositionX((positionX + random(1, 6)) % 100)
+      setPositionY((positionY - random(1, 6)) % 10)
+    }
+
+    animate()
+  })
+
+  useEffect(() => {
+    let n = 0
+    let t = ""
+
+    if (orientation === 'top') {
       ref.current.classList.add('top')
     } else {
-      ref.current.style.bottom = "0"
-      ref.current.classList.remove('top')
       ref.current.classList.add('bottom')
     }
 
-    const textArray = []
-    let n = 0
     while (n < random(50, 100)) {
-      textArray.push(chars[random(chars.length)])
+      t += chars[random(chars.length)]
       n += 1
     }
-    setText(textArray.join(""))
 
-    
-    const movement = setInterval(() => {
-      ref.current.style.left = `${(parseInt(ref.current.style.left) + random(5)) % 98}%`
-      if (ref.current.style.top) {
-        ref.current.style.top = `${(parseInt(ref.current.style.top) + random(-2)) % 5}%`
-      } else {
-        ref.current.style.bottom = `${(parseInt(ref.current.style.bottom) + random(-2)) % 5}%`
-      }
-    }, 20)
-
-    return () => {
-      clearInterval(movement)
-    }
-  }, [chars])
+    setText(t)
+  }, [chars, orientation])
 
   return (
     <div ref={ref} className="vertical-symbols">{text}</div>

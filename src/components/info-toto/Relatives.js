@@ -1,40 +1,80 @@
 import React, { useEffect, useRef, useState } from "react"
 import { random } from "../../helpers"
+import { wait } from "../../helpers"
 
-const Relatives = ({ chars, done }) => {
+const Relatives = ({ chars, setActiveInfo }) => {
 
-  const [text, setText] = useState("")
+  const [text, setText] = useState(" ")
+  const [textIndex, setTextIndex] = useState(0)
+  const [direction, setDirection] = useState('forward')
+  const [blinking, setBlinking] = useState(false)
+  const age = "[ FAMILLE PROCHE = . . . ]"
+
   const textRef = useRef()
 
   useEffect(() => {
-    const relatives = "FAMILLE PROCHE: . . .".split("")
-    let i = 0
-    let n = 0
-    let blinking
-    const textTimer = setInterval(() => {
-      if (i < relatives.length) {
-        setText([...relatives.slice(0, i), chars[random(chars.length)]].join(""))
-        n += 1
-        if (n === 20) {
-          i += 1
-          n = 0
-        }
-      } else {
-        clearInterval(textTimer)
-        setText(relatives.join(""))
-        setTimeout(() => {
-          blinking = setInterval(() => {
-            textRef.current.classList.toggle('blink')
-          }, 500)
-        }, 100)
-      }
-    }, 5)
 
-    return () => {
-      clearInterval(textTimer)
-      clearInterval(blinking)
+    const animate = async () => {  
+      if (direction === 'forward') {
+        await wait(20)
+        setText(age.slice(0, textIndex) + chars[random(chars.length)])
+      }  
     }
-  }, [chars])
+
+    animate()
+
+  })
+
+  useEffect(() => {
+
+    const animate = async () => {
+      switch(direction) {
+        case 'forward':
+          await wait(100)
+          setTextIndex(textIndex + 1)
+          break
+        
+        case 'changing':
+          setText(age)
+          await wait(1000)
+          setDirection('blinking')
+          break
+        
+        case 'blinking':
+          await wait(3000)
+          setActiveInfo('error')
+          break
+
+        default:
+          break
+      }
+    }
+
+    if (textIndex === age.length - 1) {
+      setDirection('changing')
+    }
+    
+    animate()
+    
+  }, [textIndex, direction, setActiveInfo])
+
+  useEffect(() => {
+    
+    const animate = async () => {
+      await wait(500)
+      if (!blinking && textRef.current) {
+        textRef.current.classList.add('blink')
+        setBlinking(true)
+      } else if (textRef.current) {
+        textRef.current.classList.remove('blink')
+        setBlinking(false)
+      }
+    }
+
+    if (direction === "blinking") {
+      animate()
+    }
+  }, [blinking, direction])
 
   return (
     <div ref={textRef}>{text}</div>
