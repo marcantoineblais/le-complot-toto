@@ -31,15 +31,15 @@ const HackingScreen = ({ setActive, chars }) => {
           break
         
         case 'scanner':
-          titleRef.current.innerHTML = '#$ACCESSING _CAMERA!&'
           setScanDisplay('block')
+          titleRef.current.innerHTML = '&_ACCESSING CAMERA_*>'
           await wait(4000)
           setActiveHacking('match')
           break
-
+          
         case 'match':
-          setIsBlinking(false)
           setScanDisplay("none")
+          setIsBlinking(false)
           contentRef.current.classList.remove('blink')
           titleRef.current.innerHTML = 'MATCH FOUND'
           await wait(1000)
@@ -47,7 +47,9 @@ const HackingScreen = ({ setActive, chars }) => {
           break
 
         case 'identity':
-          imgRef.current.classList.remove('no-display')
+          imgRef.current.style.display = "block"
+          await wait(100)
+          imgRef.current.classList.remove('zoom-out')
           await wait(500)
           contentRef.current.classList.add('right-corner')
           contentRef.current.style.transform = 'translate(0)'
@@ -93,8 +95,8 @@ const HackingScreen = ({ setActive, chars }) => {
           <Scanner display={scanDisplay}/>
         </div>
         <div ref={contentRef} className="content">
-          <h1 ref={titleRef}>$HACKING_ <br /> #{'>'}DEVICE+</h1>
-          <img ref={imgRef} className="no-display" src="./images/toto-avatar.png" alt="avatar de Toto" />
+          <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
+          <img ref={imgRef} className="zoom-out" src="./images/toto-avatar.png" alt="avatar de Toto" />
           {infoBox ? <InfoToto setActive={setActive} /> : null}
         </div>
       </div>

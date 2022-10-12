@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 const LoadingScreen = ({ setActive }) => {
 
   const [activeDot, setActiveDot] = useState(0)
+  const [isActive, setIsActive] = useState(true)
 
   const contentRef = useRef()
   const dot1 = useRef()
@@ -15,18 +16,19 @@ const LoadingScreen = ({ setActive }) => {
     
     const dots = [dot1, dot2, dot3]
     const animate = async () => {
-      await wait(200)
-      if (activeDot < dots.length) {
+      if (isActive && activeDot < dots.length) {
+        await wait(200)
         dots[activeDot].current.classList.toggle('blink')
         setActiveDot(activeDot + 1)
-      } else {
+      } else if (activeDot === dots.length) {
+        await wait(300)
         setActiveDot(0)
       }
     }
 
     animate()
 
-  }, [activeDot])
+  }, [activeDot, isActive])
 
   useEffect(() => {
 
@@ -34,6 +36,8 @@ const LoadingScreen = ({ setActive }) => {
       await wait(4000)
       contentRef.current.classList.add('blink')
       await wait(1000)
+      setIsActive(false)
+      await wait(200)
       setActive('hacking')
     }
 
