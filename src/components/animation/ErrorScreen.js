@@ -1,13 +1,17 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { wait } from "../../helpers"
 import VerticalSymbols from "./VerticalSymbols"
 
 const ErrorScreen = ({ chars, setActive }) => {
 
+  const errorRef = useRef()
+
   useEffect(() => {
 
     const animate = async () => {
       await wait(5000)
+      errorRef.current.classList.add('blink')
+      await wait(7000)
       setActive('truth')
     }
 
@@ -27,7 +31,7 @@ const ErrorScreen = ({ chars, setActive }) => {
   }
 
   return (
-    <div className="error-screen">
+    <div ref={errorRef} className="error-screen">
       <h2 id="fatal">___FATAL_</h2>
       <h2 id="error">_ERROR___</h2>
       {renderedSymbols(50)}

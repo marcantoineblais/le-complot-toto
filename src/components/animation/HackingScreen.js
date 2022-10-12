@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import HackingSymbols from "./HackingSymbols"
 import InfoToto from "./InfoToto"
 import Scanner from "./Scanner"
-import { random } from "../../helpers"
-import { wait } from "../../helpers"
+import { random, wait } from "../../helpers"
 
 const HackingScreen = ({ setActive, chars }) => {
 
