@@ -16,7 +16,7 @@ const Animation = () => {
 
   useEffect(() => {
     const hideNavbar = async () => {
-      await wait(200)
+      await wait(5000)
       window.scrollTo(0, 1)
     }
 
