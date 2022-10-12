@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import { wait } from "../helpers"
 
 const Scanner = ({ display }) => {
+
+  const [position, setPosition] = useState(0)
 
   const scannerRef = useRef()
   const scanlineTopRef = useRef()
@@ -9,27 +12,26 @@ const Scanner = ({ display }) => {
   const scanlineRightRef = useRef()
 
   useEffect(() => {
-    scannerRef.current.style.display = display
-    let n = 0
-    const scanMovement = setInterval(() => {
-      scanlineTopRef.current.style.top = `${n}%`
-      scanlineBottomRef.current.style.bottom = `${n}%`
-      scanlineLeftRef.current.style.left = `${n}%`
-      scanlineRightRef.current.style.right = `${n}%`
-      n = (n + 1) % 100
-    }, 5)
 
-    return () => {
-      clearInterval(scanMovement)
+    const animate = async () => {
+      scanlineTopRef.current.style.transform = `translateY(${position}vh`
+      scanlineBottomRef.current.style.transform = `translateY(-${position}vh`
+      scanlineLeftRef.current.style.transform = `translateX(${position}vw`
+      scanlineRightRef.current.style.transform = `translateX(-${position}vw`
+      await wait(500)
+      position === 80 ? setPosition(0) : setPosition(80)
     }
-  }, [display])
+
+    animate()
+
+  }, [position])
 
   return (
     <div ref={scannerRef} className="scanner">
-      <div ref={scanlineTopRef} className="scanline"></div>
-      <div ref={scanlineBottomRef} className="scanline"></div>
-      <div ref={scanlineLeftRef} className="scanline-vertical"></div>
-      <div ref={scanlineRightRef} className="scanline-vertical"></div>
+      <div ref={scanlineTopRef} id="top" className="scanline"></div>
+      <div ref={scanlineBottomRef} id="bottom" className="scanline"></div>
+      <div ref={scanlineLeftRef} id="left" className="scanline-vertical"></div>
+      <div ref={scanlineRightRef} id="right" className="scanline-vertical"></div>
     </div>
   )
 }

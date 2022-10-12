@@ -15,7 +15,7 @@ const HackingScreen = ({ setActive, chars }) => {
   const [activeHacking, setActiveHacking] = useState('fadeIn')
   const [isBlinking, setIsBlinking] = useState(true)
   const [rng, setRng] = useState(random(10))
-  const [scanDisplay, setScanDisplay] = useState('none')
+  const [scanDisplay, setScanDisplay] = useState(false)
   const [infoBox, setInfoBox] = useState(false)
 
 
@@ -31,14 +31,14 @@ const HackingScreen = ({ setActive, chars }) => {
           break
         
         case 'scanner':
-          setScanDisplay('block')
+          setScanDisplay(true)
           titleRef.current.innerHTML = '&_ACCESSING CAMERA_*>'
           await wait(4000)
           setActiveHacking('match')
           break
           
         case 'match':
-          setScanDisplay("none")
+          setScanDisplay(false)
           setIsBlinking(false)
           contentRef.current.classList.remove('blink')
           titleRef.current.innerHTML = 'MATCH FOUND'
@@ -48,7 +48,7 @@ const HackingScreen = ({ setActive, chars }) => {
 
         case 'identity':
           imgRef.current.style.display = "block"
-          await wait(100)
+          await wait(50)
           imgRef.current.classList.remove('zoom-out')
           await wait(500)
           contentRef.current.classList.add('right-corner')
@@ -91,8 +91,8 @@ const HackingScreen = ({ setActive, chars }) => {
     <div className="hacking-screen">
       <div className="red-bg blink" ref={bgRef}>
         <div>
-          <HackingSymbols chars={chars}/>
-          <Scanner display={scanDisplay}/>
+          {!scanDisplay ? <HackingSymbols chars={chars}/> : null}
+          {scanDisplay ? <Scanner /> : null}
         </div>
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
