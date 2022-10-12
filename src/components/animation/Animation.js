@@ -2,7 +2,8 @@ import React, { Fragment, useEffect, useState } from "react"
 import HackingScreen from "./HackingScreen"
 import LoadingScreen from "./LoadingScreen"
 import ErrorScreen from "./ErrorScreen"
-import { wait } from "../helpers"
+import TruthScreen from "./TruthScreen"
+import { wait } from "../../helpers"
 
 const Animation = () => {
 
@@ -52,6 +53,7 @@ const Animation = () => {
       {loadingScreen ? <LoadingScreen setActive={setActive}/> : null}
       {hackingScreen ? <HackingScreen setActive={setActive} chars={chars}/> : null}
       {errorScreen ? <ErrorScreen chars={chars} setActive={setActive}/> : null}
+      {truthScreen ? <TruthScreen /> : null}
     </Fragment>
   )
 }

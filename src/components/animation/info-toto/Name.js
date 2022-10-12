@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { random, wait } from "../../helpers"
+import { random, wait } from "../../../helpers"
 
 const Name = ({ chars, setActiveInfo }) => {
 

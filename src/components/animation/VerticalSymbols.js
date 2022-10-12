@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { random, wait } from "../helpers"
+import { random, wait } from "../../helpers"
 
 const VerticalSymbols = ({ chars }) => {
 
@@ -11,19 +11,22 @@ const VerticalSymbols = ({ chars }) => {
 
   useEffect(() => {
     const animate = async () => {
-      await wait(20)
       ref.current.style.left = `${positionX}%`
       if (orientation === 'top') {
         ref.current.style.top = `${positionY}%`
       } else {
         ref.current.style.bottom = `${positionY}%`
       }
-
+      
+      await wait(20)
       setPositionX((positionX + random(1, 6)) % 100)
       setPositionY((positionY - random(1, 6)) % 10)
     }
 
-    animate()
+    if (ref.current) {
+      animate()
+    }
+
   })
 
   useEffect(() => {

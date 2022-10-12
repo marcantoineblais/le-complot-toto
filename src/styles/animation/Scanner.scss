@@ -29,8 +29,7 @@
   }
   
   #bottom {
-    bottom: 0;
-    transition-delay: 200ms;
+    bottom: 1vh;
   }
 
   #left {
@@ -39,7 +38,7 @@
   }
 
   #right {
-    right: 0;
+    right: 1vw;
     transition-delay: 100ms;
   }
 }

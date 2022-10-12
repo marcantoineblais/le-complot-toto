@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
-import { wait } from "../helpers"
+import { wait } from "../../helpers"
 
-const Scanner = ({ display }) => {
+const Scanner = () => {
 
   const [position, setPosition] = useState(0)
 

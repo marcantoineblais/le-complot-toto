@@ -1,9 +1,9 @@
-import { wait } from "@testing-library/user-event/dist/utils"
 import React, { useEffect, useRef, useState } from "react"
-import { random } from "../helpers"
 import HackingSymbols from "./HackingSymbols"
 import InfoToto from "./InfoToto"
 import Scanner from "./Scanner"
+import { random } from "../../helpers"
+import { wait } from "../../helpers"
 
 const HackingScreen = ({ setActive, chars }) => {
 
@@ -33,7 +33,7 @@ const HackingScreen = ({ setActive, chars }) => {
         case 'scanner':
           setScanDisplay(true)
           titleRef.current.innerHTML = '&_ACCESSING CAMERA_*>'
-          await wait(4000)
+          await wait(6000)
           setActiveHacking('match')
           break
           

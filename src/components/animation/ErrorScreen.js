@@ -1,7 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { wait } from "../../helpers"
 import VerticalSymbols from "./VerticalSymbols"
 
-const ErrorScreen = ({ chars }) => {
+const ErrorScreen = ({ chars, setActive }) => {
+
+  useEffect(() => {
+
+    const animate = async () => {
+      await wait(5000)
+      setActive('truth')
+    }
+
+    animate()
+    
+  }, [setActive])
 
   const renderedSymbols = (n) => {
     const array = []

@@ -1,8 +1,9 @@
-@import url('./Loading-Screen.scss');
-@import url('./Hacking-Screen.scss');
-@import url('./Scanner.scss');
-@import url('./Info-Toto.scss');
-@import url('./Error-Screen.scss');
+@import url('./animation/Loading-Screen.scss');
+@import url('./animation/Hacking-Screen.scss');
+@import url('./animation/Scanner.scss');
+@import url('./animation/Info-Toto.scss');
+@import url('./animation/Error-Screen.scss');
+@import url('./animation/Truth-Screen.scss');
 
 .container {
     margin: 0 auto;

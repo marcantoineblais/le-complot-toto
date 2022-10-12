@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { random } from "../../helpers"
-import { wait } from "../../helpers"
+import { random, wait } from "../../../helpers"
 
 const Relatives = ({ chars, setActiveInfo }) => {
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
-import { wait } from "../helpers"
 import Age from "./info-toto/Age"
 import Name from "./info-toto/Name"
 import Relatives from "./info-toto/Relatives"
+import { wait } from "../../helpers"
  
 
 const InfoToto = ({ chars, setActive }) => {

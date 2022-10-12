@@ -1,5 +1,5 @@
-import { wait } from "@testing-library/user-event/dist/utils"
 import React, { useEffect, useRef, useState } from "react"
+import { wait } from "../../helpers"
 
 const LoadingScreen = ({ setActive }) => {
 

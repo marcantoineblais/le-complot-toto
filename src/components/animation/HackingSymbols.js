@@ -1,6 +1,7 @@
-import { wait } from "@testing-library/user-event/dist/utils"
 import React, { Fragment, useEffect, useState } from "react"
-import { random } from "../helpers"
+import { wait } from "../../helpers"
+import { random } from "../../helpers"
+
 const HackingSymbols = ({ chars }) => {
 
   const [symbols, setSymbols] = useState("")
