@@ -35,10 +35,10 @@ const HackingScreen = ({ setActive, chars }) => {
           titleRef.current.innerHTML = '&_ACCESSING CAMERA_*>'
           await wait(3800)
           setActiveHacking('match')
+          setScanDisplay(false)
           break
           
         case 'match':
-          setScanDisplay(false)
           setIsBlinking(false)
           contentRef.current.classList.remove('blink')
           titleRef.current.innerHTML = 'MATCH FOUND'
@@ -89,11 +89,11 @@ const HackingScreen = ({ setActive, chars }) => {
 
   return (
     <div className="hacking-screen">
-      {scanDisplay ? <Scanner /> : null}
       <div className="red-bg blink" ref={bgRef}>
         <div>
           {!scanDisplay ? <HackingSymbols chars={chars} freeze={freezeHackingSymbols}/> : null}
         </div>
+        {scanDisplay ? <Scanner /> : null}
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
           <img ref={imgRef} className="zoom-out" src="./images/toto-avatar.png" alt="avatar de Toto" />
