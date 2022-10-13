@@ -101,6 +101,25 @@ export const split = (arg) => {
   return [keys, values]
 }
 
+// sample(array, numOfSelection)
+// input 1 array and 1 integer
+// output / array containing the selected number of elements (default is 1)
+export const sample = (arg = [], num = 1) => {
+  if (num > arg.length) {
+    return arg
+  }
+  const oldArray = arg
+  const newArray = []
+  let n = 0
+  while (n < num) {
+    let i = random(oldArray.length)
+    newArray.push(oldArray[i])
+    oldArray.splice(i, 1)
+    n += 1
+  }
+  return newArray
+}
+
 // random(min, max)
 // input 1 integer || 2 integers
 // output 1 random integer between 0 and max value || min and max value

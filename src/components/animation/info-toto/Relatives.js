@@ -41,7 +41,7 @@ const Relatives = ({ chars, setActiveInfo, freeze }) => {
         
         case 'blinking':
           freeze(true)
-          await wait(3000)
+          await wait(4500)
           setActiveInfo('error')
           break
 
@@ -56,7 +56,7 @@ const Relatives = ({ chars, setActiveInfo, freeze }) => {
     
     animate()
     
-  }, [textIndex, direction, setActiveInfo])
+  }, [textIndex, direction, setActiveInfo, freeze])
 
   useEffect(() => {
     

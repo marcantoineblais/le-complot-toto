@@ -26,14 +26,14 @@ const HackingScreen = ({ setActive, chars }) => {
       switch(activeHacking) {
         case 'fadeIn':
           bgRef.current.classList.remove('blink')
-          await wait(5000)
+          await wait(4000)
           setActiveHacking('scanner')
           break
         
         case 'scanner':
           setScanDisplay(true)
           titleRef.current.innerHTML = '&_ACCESSING CAMERA_*>'
-          await wait(3000)
+          await wait(3800)
           setActiveHacking('match')
           break
           
@@ -42,7 +42,7 @@ const HackingScreen = ({ setActive, chars }) => {
           setIsBlinking(false)
           contentRef.current.classList.remove('blink')
           titleRef.current.innerHTML = 'MATCH FOUND'
-          await wait(1000)
+          await wait(800)
           setActiveHacking('identity')
           break
 

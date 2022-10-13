@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react"
+import React, { Fragment, useEffect, useRef, useState } from "react"
 import HackingScreen from "./HackingScreen"
 import LoadingScreen from "./LoadingScreen"
 import ErrorScreen from "./ErrorScreen"
@@ -16,6 +16,30 @@ const Animation = () => {
   const [active, setActive] = useState(null)
   const chars = ['-','+','@','?','^','!','&','#','%','$','<','>','0','1','2','3','4','5','6','7','8','9']
   
+  const musicRef = useRef()
+  const glitchesRef = useRef()
+
+  const playMusic = () => {
+    musicRef.current.volume = 0.5
+    musicRef.current.play()
+  }
+
+  const playGlitches = () => {
+    musicRef.current.pause()
+    glitchesRef.current.volume = 0.5
+    glitchesRef.current.play()
+  }
+
+  const muteAudio = () => {
+    if (musicRef.current.volume === 0) {
+      musicRef.current.volume = 0.5
+      glitchesRef.current.volume = 0.5
+    } else {
+      musicRef.current.volume = 0
+      glitchesRef.current.volume = 0
+    }
+  }
+
   useEffect(() => {
     
     const animate = async () => {
@@ -24,7 +48,7 @@ const Animation = () => {
         case 'loading':
           setStartScreen(false)
           setLoadingScreen(true)
-          await wait(5000)
+          await wait(6000)
           setHackingScreen(true)
           break
           
@@ -47,18 +71,31 @@ const Animation = () => {
           setStartScreen(true)
       }
     }
-      
+    
     animate()
     
   }, [active])
 
+  useEffect(() => {
+
+    if (!startScreen) {
+      window.addEventListener('click', muteAudio)
+    }
+
+    return () => {
+      window.removeEventListener('click', muteAudio)
+    }
+  }, [startScreen])
+
   return (
     <Fragment>
-      {startScreen ? <StartScreen setActive={setActive} /> : null}
+      {startScreen ? <StartScreen setActive={setActive} play={playMusic}/> : null}
       {loadingScreen ? <LoadingScreen setActive={setActive}/> : null}
       {hackingScreen ? <HackingScreen setActive={setActive} chars={chars}/> : null}
       {errorScreen ? <ErrorScreen chars={chars} setActive={setActive}/> : null}
-      {truthScreen ? <TruthScreen /> : null}
+      {truthScreen ? <TruthScreen playGlitches={playGlitches} /> : null}
+      <audio ref={musicRef} src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/Cinematic%20Sound%20Effects.mp3"/>
+      <audio loop ref={glitchesRef} src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/Radio%20Glitches.mp3"/>
     </Fragment>
   )
 }

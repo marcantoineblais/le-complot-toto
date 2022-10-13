@@ -9,9 +9,9 @@ const ErrorScreen = ({ chars, setActive }) => {
   useEffect(() => {
 
     const animate = async () => {
-      await wait(5000)
+      await wait(4500)
       errorRef.current.classList.add('blink')
-      await wait(5000)
+      await wait(4400)
       setActive('truth')
     }
 
