@@ -1,0 +1,30 @@
+@import '../utilities/variables.scss';
+
+.start-screen {
+  height: 100%;
+  background-color: $black;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    background-color: inherit;
+    border: none;
+    color: $gold;
+  }
+
+  h1 {
+    color: $soft-white;
+  }
+
+  #start {
+    align-self: center;
+    justify-self: center;
+    flex-grow: 1;
+  }
+
+  #skip {
+    align-self: flex-end;
+    justify-self: flex-end;
+    padding:0 3em 3em 0;
+  }
+}

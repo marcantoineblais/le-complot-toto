@@ -32,9 +32,9 @@ const ErrorScreen = ({ chars, setActive }) => {
 
   return (
     <div ref={errorRef} className="error-screen">
-      {renderedSymbols(50)}
       <h2 id="fatal">___FATAL_</h2>
       <h2 id="error">_ERROR___</h2>
+      {renderedSymbols(20)}
     </div>
   )
 }

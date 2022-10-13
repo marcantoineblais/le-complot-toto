@@ -5,7 +5,7 @@ import Relatives from "./info-toto/Relatives"
 import { wait } from "../../helpers"
  
 
-const InfoToto = ({ chars, setActive }) => {
+const InfoToto = ({ chars, setActive, freeze }) => {
 
   const [showName, setShowName] = useState(false)
   const [showAge, setShowAge] = useState(false)
@@ -59,7 +59,7 @@ const InfoToto = ({ chars, setActive }) => {
       <div className="text">
         {showName ? <Name chars={chars} setActiveInfo={setActiveInfo}/> : null}
         {showAge ? <Age chars={chars} setActiveInfo={setActiveInfo}/> : null}
-        {showRelatives ? <Relatives chars={chars} setActiveInfo={setActiveInfo}/> : null}
+        {showRelatives ? <Relatives chars={chars} setActiveInfo={setActiveInfo} freeze={freeze}/> : null}
       </div>
       <div className="bottom-span">{'</span>'}</div>
     </div>

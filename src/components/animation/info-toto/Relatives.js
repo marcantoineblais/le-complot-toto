@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { random, wait } from "../../../helpers"
 
-const Relatives = ({ chars, setActiveInfo }) => {
+const Relatives = ({ chars, setActiveInfo, freeze }) => {
 
   const [text, setText] = useState(" ")
   const [textIndex, setTextIndex] = useState(0)
@@ -40,6 +40,7 @@ const Relatives = ({ chars, setActiveInfo }) => {
           break
         
         case 'blinking':
+          freeze(true)
           await wait(3000)
           setActiveInfo('error')
           break

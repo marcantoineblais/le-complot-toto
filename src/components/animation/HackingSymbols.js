@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react"
 import { wait } from "../../helpers"
 import { random } from "../../helpers"
 
-const HackingSymbols = ({ chars }) => {
+const HackingSymbols = ({ chars, freeze }) => {
 
   const [symbols, setSymbols] = useState("")
 
@@ -19,9 +19,11 @@ const HackingSymbols = ({ chars }) => {
       setSymbols(characters)
     }
 
-    animate()
+    if (!freeze) {
+      animate()
+    }
 
-  }, [symbols, chars])
+  }, [symbols, chars, freeze])
 
   return (
     <Fragment>{symbols}</Fragment>
