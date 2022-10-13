@@ -3,8 +3,8 @@ import HackingScreen from "./HackingScreen"
 import LoadingScreen from "./LoadingScreen"
 import ErrorScreen from "./ErrorScreen"
 import TruthScreen from "./TruthScreen"
-import { wait } from "../../helpers"
 import StartScreen from "./StartScreen"
+import { wait } from "../../helpers"
 
 const Animation = () => {
 
@@ -24,7 +24,11 @@ const Animation = () => {
     musicRef.current.play()
   }
 
-  const playGlitches = () => {
+  const playGlitches = async () => {
+    while (musicRef.current.volume > 0.01) {
+      await wait(15)
+      musicRef.current.volume = musicRef.current.volume / 2
+    }
     musicRef.current.pause()
     glitchesRef.current.volume = 0.5
     glitchesRef.current.play()

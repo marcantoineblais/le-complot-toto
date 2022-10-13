@@ -36,10 +36,15 @@
   }
 
   .rotate-right {
-    transform: rotate(5deg);
+    transform: rotate(3deg);
   }
 
   .rotate-left {
-    transform: rotate(-5deg);
+    transform: rotate(-3deg);
   }
+}
+
+.inverse-color {
+  background-color: $black;
+  color: $gold;
 }
