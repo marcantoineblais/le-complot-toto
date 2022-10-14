@@ -98,8 +98,8 @@ const Animation = () => {
       {hackingScreen ? <HackingScreen setActive={setActive} chars={chars}/> : null}
       {errorScreen ? <ErrorScreen chars={chars} setActive={setActive}/> : null}
       {truthScreen ? <TruthScreen playGlitches={playGlitches} /> : null}
-      <audio ref={musicRef} src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/Cinematic%20Sound%20Effects.mp3"/>
-      <audio loop ref={glitchesRef} src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/Radio%20Glitches.mp3"/>
+      <audio ref={musicRef} src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/audio/Cinematic%20Sound%20Effects.mp3"/>
+      <audio loop ref={glitchesRef} src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/audio/Radio%20Glitches.mp3"/>
     </Fragment>
   )
 }
