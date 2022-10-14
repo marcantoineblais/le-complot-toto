@@ -41,6 +41,7 @@ const Homepage = () => {
       homepageRef.current.style.color = colors['red']
       homepageRef.current.classList.remove('border-padding')
       confidentialRef.current.style.color = colors['red']
+      confidentialRef.current.style.transitionDuration = '0ms'
       confidentialRef.current.style.borderBottom = `5px solid ${colors['red']}`
     }
 
