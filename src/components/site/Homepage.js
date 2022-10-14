@@ -54,9 +54,8 @@ const Homepage = () => {
   
   useEffect(() => {
 
-    
     window.addEventListener('load', () => {
-      blur.style.top = `${confidentialRef.current.clientHeight + 15}px`
+      blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
     })
     
     window.addEventListener('resize', () => {
@@ -75,7 +74,7 @@ const Homepage = () => {
         blur.style.top = `${confidential.clientHeight + 15}px`
       })
     }
-  }, [])
+  })
     
   return (
     <div ref={homepageRef} className="homepage border-padding">
