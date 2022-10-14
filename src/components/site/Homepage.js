@@ -76,7 +76,7 @@ const Homepage = () => {
         blur.style.top = `${confidential.clientHeight + 15}px`
       })
     }
-  })
+  }, [])
     
   return (
     <div ref={homepageRef} className="homepage border-padding">
