@@ -54,6 +54,8 @@ const Homepage = () => {
   
   useEffect(() => {
 
+    blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
+
     window.addEventListener('load', () => {
       blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
     })
@@ -65,7 +67,7 @@ const Homepage = () => {
     const blur = blurRef.current
     const confidential = confidentialRef.current
     
-    return () => {
+    return () => {      
       window.removeEventListener('load', () => {
         blur.style.top = `${confidential.clientHeight + 15}px`
       })
