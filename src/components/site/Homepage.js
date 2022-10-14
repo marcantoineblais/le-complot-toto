@@ -53,13 +53,28 @@ const Homepage = () => {
   }, [colorIndex, blurImage])
   
   useEffect(() => {
+
+    
     window.addEventListener('load', () => {
-      blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
+      blur.style.top = `${confidentialRef.current.clientHeight + 15}px`
     })
     
     window.addEventListener('resize', () => {
       blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
     })
+
+    const blur = blurRef.current
+    const confidential = confidentialRef.current
+    
+    return () => {
+      window.removeEventListener('load', () => {
+        blur.style.top = `${confidential.clientHeight + 15}px`
+      })
+
+      window.removeEventListener('resize', () => {
+        blur.style.top = `${confidential.clientHeight + 15}px`
+      })
+    }
   }, [])
     
   return (
