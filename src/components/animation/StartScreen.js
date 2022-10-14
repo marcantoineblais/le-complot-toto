@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const StartScreen = ({ setActive, play }) => {
 
@@ -14,7 +15,7 @@ const StartScreen = ({ setActive, play }) => {
         onClick={ () => start()}>
         <h1>Débuter l'aventure</h1>
       </button>
-      <button id="skip" onClick={() => setActive('truth')}>[Skip intro]</button>
+      <Link to={'/truth'} id={'skip'}>[Skip intro]</Link>
     </div>
   )
 }

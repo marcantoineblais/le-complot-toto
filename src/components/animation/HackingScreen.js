@@ -96,7 +96,12 @@ const HackingScreen = ({ setActive, chars }) => {
         {scanDisplay ? <Scanner /> : null}
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
-          <img ref={imgRef} className="zoom-out" src="./images/toto-avatar.png" alt="avatar de Toto" />
+          <img
+            ref={imgRef}
+            className="zoom-out"
+            src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/toto-avatar.png"
+            alt="avatar de Toto"
+          />
           {infoBox ? <InfoToto chars={chars} setActive={setActive} freeze={setFreezeHackingSymbols} /> : null}
         </div>
       </div>

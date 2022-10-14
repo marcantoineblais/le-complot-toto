@@ -7,11 +7,15 @@ const Homepage = () => {
   const [blurImage, setBlurImage] = useState(true)
   const homepageRef = useRef()
   const confidentialRef = useRef()
+  const h1Ref = useRef()
   const totoFolderRef = useRef()
+  const maxFolderRef = useRef()
+  const blurRef = useRef()
 
   const unBlur = () => {
     setBlurImage(false)
     totoFolderRef.current.classList.remove('zoom-in')
+    maxFolderRef.current.classList.remove('zoom-in')
   }
   
   useEffect(() => {
@@ -30,6 +34,7 @@ const Homepage = () => {
       homepageRef.current.style.color = colors[borderColors[colorIndex]]
       confidentialRef.current.style.borderBottom = `5px solid ${colors[borderColors[colorIndex]]}`
       confidentialRef.current.style.color = colors[borderColors[colorIndex]]
+      h1Ref.current.style.borderBottom = `5px solid ${colors[borderColors[colorIndex]]}`
       await wait(1000)
       setColorIndex((colorIndex + 1) % borderColors.length)
     }
@@ -37,29 +42,56 @@ const Homepage = () => {
     if (blurImage) {
       animate()
     } else {
+      homepageRef.current.classList.remove('border-padding')
       homepageRef.current.style.border = 'none'
       homepageRef.current.style.color = colors['red']
-      homepageRef.current.classList.remove('border-padding')
       confidentialRef.current.style.color = colors['red']
-      confidentialRef.current.style.transitionDuration = '0ms'
       confidentialRef.current.style.borderBottom = `5px solid ${colors['red']}`
+      h1Ref.current.style.borderBottom = `5px solid ${colors['red']}`
     }
-
+    
   }, [colorIndex, blurImage])
+  
+  useEffect(() => {
+    window.addEventListener('load', () => {
+      blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
+    })
+    
+    window.addEventListener('resize', () => {
+      blurRef.current.style.top = `${confidentialRef.current.clientHeight + 15}px`
+    })
+  }, [])
     
   return (
     <div ref={homepageRef} className="homepage border-padding">
-      <h1 ref={confidentialRef}>CONFIDENTIEL</h1>
-      <h3>
-        Les dossiers ci-dessous sont strictement confidentiels.
-        Toute personne partageant son contenu sera passible d'une sentence de haute trahison.
-      </h3>
-      <h2>Poursuivez à vos risques.</h2>
-
+      <div ref={confidentialRef}>
+        <h1 ref={h1Ref}>CONFIDENTIEL</h1>
+        <h3>
+          Les dossiers ci-dessous sont strictement confidentiels.
+          Toute personne partageant son contenu sera passible d'une sentence de haute trahison.
+        </h3>
+        <h2>Poursuivez à vos risques.</h2>
+      </div>
       <div className="dossier">
-        <img ref={totoFolderRef} className="zoom-in" src="./images/dossier-toto.png" alt="dossier figurant des informations sur Toto" />
-        {blurImage ? <img  onClick={() => unBlur()} className="eye" src="./images/eye.png" alt="Eye icon"/> : null }
-        {blurImage ? <div className="blur"></div> : null}
+        <img
+          ref={totoFolderRef}
+          className="zoom-in"
+          src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-toto.png"
+          alt="dossier figurant des informations sur Toto"
+        />
+        <img
+          ref={maxFolderRef}
+          className="zoom-in"
+          src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-max.png"
+          alt="dossier figurant des informations sur Toto"
+        />
+        {blurImage ? <img
+          onClick={() => unBlur()}
+          className="eye"
+          src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/eye.png"
+          alt="Eye icon"
+          /> : null }
+        {blurImage ? <div ref={blurRef} className="blur"></div> : null}
       </div>
     </div>
   )
