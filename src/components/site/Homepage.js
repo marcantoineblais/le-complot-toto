@@ -9,15 +9,6 @@ const Homepage = () => {
   const confidentialRef = useRef()
   const h1Ref = useRef()
   const imgRef = useRef()
-
-  const unBlur = () => {
-    const image = imgRef.current
-    for (let i = 0; i < image.children.length; i += 1) {
-      image.children[i].classList.remove('zoom-in')
-    }
-    image.style.filter = "none"
-    setBlurImage(false)
-  }
   
   useEffect(() => {
     const borderColors = ['red', 'orange', 'yellow', 'green', 'blue', 'white']
@@ -53,6 +44,16 @@ const Homepage = () => {
     
   }, [colorIndex, blurImage])
       
+  const unBlur = () => {
+    const image = imgRef.current
+    for (let i = 0; i < image.children.length; i += 1) {
+      image.children[i].classList.remove('zoom-in')
+    }
+    image.style.filter = "none"
+    image.style.overflowY = "scroll"
+    setBlurImage(false)
+  }
+
   return (
     <div ref={homepageRef} className="homepage border-padding">
       <div ref={confidentialRef}>
