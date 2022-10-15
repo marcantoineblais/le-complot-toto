@@ -10,6 +10,7 @@
   height: 100vh;
   color: $red;
   font-family: ubuntu;
+  z-index: 1;
   
   h1 {
     letter-spacing: 5px;
@@ -29,17 +30,23 @@
     text-align: justify;
   }
 
-  .dossier {
+  .folder {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
     overflow-x: hidden;
     overflow-y: scroll;
     
+    .folder-img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      filter: blur(16px) brightness(0.3);
+    }
+
     img {
-      margin-bottom: 1em;
       width: 100%;
       object-fit: contain;
       transition-duration: 1000ms;
@@ -52,15 +59,6 @@
       left: 50%;
       transform: translate(-50%, 50%);
       z-index: 1;
-    }
-
-    .blur {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      right: 10px;
-      background-color: #000a;
-      backdrop-filter: blur(16px);
     }
 
     .zoom-in {
