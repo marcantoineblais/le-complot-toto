@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { random, sample, wait } from "../../helpers"
 
-const TruthScreen = ({ playGlitches }) => {
+const TruthScreen = ({ playNoise }) => {
 
   const [glitching, setGlitching] = useState(false)
   const [glitches, setGlitches] = useState(null)
@@ -10,8 +10,8 @@ const TruthScreen = ({ playGlitches }) => {
   const backGroundRef = useRef()
 
   useEffect(() => {
-    playGlitches()
-  }, [playGlitches])
+    playNoise()
+  }, [playNoise])
 
   useEffect(() => {
 
@@ -23,15 +23,17 @@ const TruthScreen = ({ playGlitches }) => {
       }
       await wait(20)
       setGlitches(effect)
-      linkRef.current.className = glitches
-      if (linkRef.current.classList.contains('inverse-color')) {
-        backGroundRef.current.classList.add('inverse-color')
-      } else {
-        backGroundRef.current.classList.remove('inverse-color')
+      if (linkRef.current) {
+        linkRef.current.className = glitches
+        if (linkRef.current.classList.contains('inverse-color')) {
+          backGroundRef.current.classList.add('inverse-color')
+        } else {
+          backGroundRef.current.classList.remove('inverse-color')
+        }
       }
     }
     
-    if (glitching && linkRef.current) { 
+    if (glitching) { 
       animate()
     } else {
       linkRef.current.className = ""
