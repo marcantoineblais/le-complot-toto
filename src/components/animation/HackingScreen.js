@@ -5,19 +5,18 @@ import Scanner from "./Scanner"
 import { random, wait } from "../../helpers"
 
 const HackingScreen = ({ setActive, chars }) => {
-
-  const bgRef = useRef()
-  const contentRef = useRef()
-  const titleRef = useRef()
-  const imgRef = useRef()
-
+  
   const [activeHacking, setActiveHacking] = useState('fadeIn')
   const [isBlinking, setIsBlinking] = useState(true)
   const [rng, setRng] = useState(random(10))
   const [scanDisplay, setScanDisplay] = useState(false)
   const [infoBox, setInfoBox] = useState(false)
   const [freezeHackingSymbols, setFreezeHackingSymbols] = useState(false)
-
+  
+  const bgRef = useRef()
+  const contentRef = useRef()
+  const titleRef = useRef()
+  const imgRef = useRef()
 
   useEffect(() => {
 
@@ -90,9 +89,7 @@ const HackingScreen = ({ setActive, chars }) => {
   return (
     <div className="hacking-screen">
       <div className="red-bg blink" ref={bgRef}>
-        <div>
-          {!scanDisplay ? <HackingSymbols chars={chars} freeze={freezeHackingSymbols}/> : null}
-        </div>
+        {!scanDisplay ? <HackingSymbols chars={chars} freeze={freezeHackingSymbols} /> : null}
         {scanDisplay ? <Scanner /> : null}
         <div ref={contentRef} className="content">
           <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
