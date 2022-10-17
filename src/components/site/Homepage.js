@@ -78,12 +78,15 @@ const Homepage = () => {
               alt="dossier figurant des informations sur Toto"
             />
           </div>
-          {blurImage ? <img
-            onClick={() => unBlur()}
-            className="eye"
-            src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/eye.png"
-            alt="Eye icon"
-            /> : null }
+          {blurImage ? 
+            <div className="eye">
+              <h3>VISIONNER</h3>
+              <img
+                onClick={() => unBlur()}
+                src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/eye.png"
+                alt="Eye icon"
+              />
+            </div> : null }
         </div>
       </div>
     </div>

@@ -75,6 +75,12 @@
     .eye {
       width: 100px;
       transform: translate(-50%, -50%);
+
+      h3 {
+        margin-bottom: -1em;
+        text-align: center;
+        color: $black;
+      }
     }
 
     .zoom-in {
