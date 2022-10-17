@@ -50,7 +50,7 @@ const HackingScreen = ({ setActive, chars }) => {
           imgRef.current.style.display = "block"
           await wait(50)
           imgRef.current.classList.remove('zoom-out')
-          await wait(1000)
+          await wait(500)
           contentRef.current.classList.add('move-corner-right')
           contentRef.current.classList.add('right-corner')
           await wait(500)
