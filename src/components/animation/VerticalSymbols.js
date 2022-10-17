@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { random, wait } from "../../helpers"
 
-const VerticalSymbols = ({ chars }) => {
+const VerticalSymbols = ({ chars, height }) => {
 
   const [text, setText] = useState("")
   const [positionX, setPositionX] = useState(random(98))
@@ -32,6 +32,7 @@ const VerticalSymbols = ({ chars }) => {
   useEffect(() => {
     let n = 0
     let t = ""
+    const numOfChars = Math.floor(height / 16)
 
     if (orientation === 'top') {
       ref.current.classList.add('top')
@@ -39,13 +40,13 @@ const VerticalSymbols = ({ chars }) => {
       ref.current.classList.add('bottom')
     }
 
-    while (n < random(50, 100)) {
+    while (n < random(numOfChars / 2, numOfChars)) {
       t += chars[random(chars.length)]
       n += 1
     }
 
     setText(t)
-  }, [chars, orientation])
+  }, [chars, orientation, height])
 
   return (
     <div ref={ref} className="vertical-symbols">{text}</div>

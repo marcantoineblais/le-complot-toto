@@ -12,15 +12,14 @@ const HackingSymbols = ({ chars, freeze }) => {
   useEffect(() => {
 
     const container = containerRef.current
-    console.log(container.clientHeight);
     setNumOfCharacters(Math.floor((container.clientHeight * container.clientWidth) / 164))
     
-    container.addEventListener('resize', () => {
+    window.addEventListener('resize', () => {
       setNumOfCharacters(Math.floor((container.clientHeight * container.clientWidth) / 164))
     })
 
     return () => {
-      container.removeEventListener('resize', () => {
+      window.removeEventListener('resize', () => {
         setNumOfCharacters(Math.floor((container.clientHeight * container.clientWidth) / 164))
       })
     }

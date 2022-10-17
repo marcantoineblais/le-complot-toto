@@ -2,10 +2,10 @@
 
 .info-toto {
   font-size: 28px;
-  position: fixed;
-  top: 50vh;
-  left: 3vw;
-  right: 3vw;
+  position: absolute;
+  margin: 0 auto;
+  top: 50%;
+  width: 100%;
   height: 160px;
   color: $yellow;
   display: none;

@@ -4,7 +4,6 @@
   width: 100%;
   height: 100%;
   font-family: Ubuntu;
-  position: relative;
 
   .red-bg {
     background-color: $red;
@@ -14,8 +13,20 @@
     overflow: hidden;
   }
 
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
   .symbols {
-    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   h1 {
@@ -28,19 +39,18 @@
   .content {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 60%;
+    z-index: 1;
+    transition-duration: 2000ms;
   }
 
   .right-corner {
+    margin-top: 3em;
+    margin-right: 1em;
+    width: 40%;
     background-color: $yellow; 
-    top: 7vh;
-    right: 3vw;
-    width: 40vw;
-    transition-duration: 2000ms;
     
     h1 {
       font-size: 24px;
@@ -54,11 +64,9 @@
     background-color: $black;
     width: 100%;
     height: 100%;
-    max-width: 40vw;
-    max-height: 40vh;
     object-fit: contain;
     border-top: solid 5px $red;
-    transition-duration: 500ms;
+    transition-duration: 300ms;
   }
 
   .zoom-out {

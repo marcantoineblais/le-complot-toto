@@ -56,33 +56,35 @@ const Homepage = () => {
 
   return (
     <div ref={homepageRef} className="homepage border-padding">
-      <div ref={confidentialRef}>
-        <h1 ref={h1Ref}>CONFIDENTIEL</h1>
-        <h3>
-          Les dossiers ci-dessous sont strictement confidentiels.
-          Toute personne partageant son contenu sera passible d'une sentence de haute trahison.
-        </h3>
-        <h2>Poursuivez à vos risques.</h2>
-      </div>
-      <div className="folder">
-        <div ref={imgRef} className="folder-img">
-          <img
-            className="zoom-in"
-            src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-toto.png"
-            alt="dossier figurant des informations sur Toto"
-          />
-          <img
-            className="zoom-in"
-            src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-max.png"
-            alt="dossier figurant des informations sur Toto"
-          />
+      <div className="container">
+        <div ref={confidentialRef}>
+          <h1 ref={h1Ref}>CONFIDENTIEL</h1>
+          <h3>
+            Les dossiers ci-dessous sont strictement confidentiels.
+            Toute personne partageant son contenu sera passible d'une sentence de haute trahison.
+          </h3>
+          <h2>Poursuivez à vos risques.</h2>
         </div>
-        {blurImage ? <img
-          onClick={() => unBlur()}
-          className="eye"
-          src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/eye.png"
-          alt="Eye icon"
-          /> : null }
+        <div className="folder">
+          <div ref={imgRef} className="folder-img">
+            <img
+              className="zoom-in"
+              src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-toto.png"
+              alt="dossier figurant des informations sur Toto"
+            />
+            <img
+              className="zoom-in"
+              src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-max.png"
+              alt="dossier figurant des informations sur Toto"
+            />
+          </div>
+          {blurImage ? <img
+            onClick={() => unBlur()}
+            className="eye"
+            src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/eye.png"
+            alt="Eye icon"
+            /> : null }
+        </div>
       </div>
     </div>
   )

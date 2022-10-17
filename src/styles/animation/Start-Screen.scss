@@ -3,9 +3,12 @@
 .start-screen {
   height: 100%;
   background-color: $black;
-  display: flex;
-  flex-direction: column;
 
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  
   a, button {
     background-color: inherit;
     border: none;

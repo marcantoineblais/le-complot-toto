@@ -2,9 +2,6 @@
 
 .homepage {
   padding: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   background-color: $black;
   border: 10px solid $red;
   height: 100vh;
@@ -12,6 +9,21 @@
   font-family: ubuntu;
   z-index: 1;
   
+  *::-webkit-scrollbar{
+    width: 0.5em;
+  }
+
+  *::-webkit-scrollbar-thumb{
+    width: 0.5em;
+    background-color: $red;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
   h1 {
     letter-spacing: 5px;
     color: inherit;

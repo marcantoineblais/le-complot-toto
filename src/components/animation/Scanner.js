@@ -14,12 +14,12 @@ const Scanner = () => {
   useEffect(() => {
 
     const animate = async () => {
-      scanlineTopRef.current.style.transform = `translateY(${position}vh`
-      scanlineBottomRef.current.style.transform = `translateY(-${position}vh`
-      scanlineLeftRef.current.style.transform = `translateX(${position}vw`
-      scanlineRightRef.current.style.transform = `translateX(-${position}vw`
+      scanlineTopRef.current.style.transform = `translateY(${position}%`
+      scanlineBottomRef.current.style.transform = `translateY(-${position}%`
+      scanlineLeftRef.current.style.transform = `translateX(${position}%`
+      scanlineRightRef.current.style.transform = `translateX(-${position}%`
       await wait(500)
-      position === 80 ? setPosition(0) : setPosition(80)
+      position ? setPosition(0) : setPosition(8000)
     }
 
     animate()

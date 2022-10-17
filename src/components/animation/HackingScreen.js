@@ -14,6 +14,7 @@ const HackingScreen = ({ setActive, chars }) => {
   const [freezeHackingSymbols, setFreezeHackingSymbols] = useState(false)
   
   const bgRef = useRef()
+  const containerRef = useRef()
   const contentRef = useRef()
   const titleRef = useRef()
   const imgRef = useRef()
@@ -51,7 +52,8 @@ const HackingScreen = ({ setActive, chars }) => {
           imgRef.current.classList.remove('zoom-out')
           await wait(500)
           contentRef.current.classList.add('right-corner')
-          contentRef.current.style.transform = 'translate(0)'
+          containerRef.current.style.justifyContent = 'flex-start'
+          containerRef.current.style.alignItems = 'flex-end'
           await wait(1000)
           setInfoBox(true)
           break
@@ -90,17 +92,19 @@ const HackingScreen = ({ setActive, chars }) => {
     <div className="hacking-screen">
       <div className="red-bg blink" ref={bgRef}>
         {!scanDisplay ? <HackingSymbols chars={chars} freeze={freezeHackingSymbols} /> : null}
-        {scanDisplay ? <Scanner /> : null}
-        <div ref={contentRef} className="content">
-          <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
-          <img
-            ref={imgRef}
-            className="zoom-out"
-            src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/toto-avatar.png"
-            alt="avatar de Toto"
-          />
+        <div ref={containerRef} className="container">
+          {scanDisplay ? <Scanner /> : null}
+          <div ref={contentRef} className="content">
+            <h1 ref={titleRef}>&_HACKING_* <br /> #{'>'}_DEVICE+</h1>
+            <img
+              ref={imgRef}
+              className="zoom-out"
+              src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/toto-avatar.png"
+              alt="avatar de Toto"
+            />
+          </div>
+          {infoBox ? <InfoToto chars={chars} setActive={setActive} freeze={setFreezeHackingSymbols} /> : null}
         </div>
-        {infoBox ? <InfoToto chars={chars} setActive={setActive} freeze={setFreezeHackingSymbols} /> : null}
       </div>
     </div>
   )

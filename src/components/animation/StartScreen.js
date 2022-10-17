@@ -10,12 +10,14 @@ const StartScreen = ({ setActive, play }) => {
 
   return (
     <div className="start-screen">
-      <button
-        id="start"
-        onClick={ () => start()}>
-        <h1>Débuter l'aventure</h1>
-      </button>
-      <Link to={'/truth'} id={'skip'}>[Skip intro]</Link>
+      <div className="container">
+        <button
+          id="start"
+          onClick={ () => start()}>
+          <h1>Débuter l'aventure</h1>
+        </button>
+        <Link to={'/truth'} id={'skip'}>[Skip intro]</Link>
+      </div>
     </div>
   )
 }

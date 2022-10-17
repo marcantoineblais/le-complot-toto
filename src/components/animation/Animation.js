@@ -115,7 +115,7 @@ const Animation = () => {
   }
 
   return (
-    <div ref={containerRef} className="container">
+    <div ref={containerRef} className="animation">
       {startScreen ? <StartScreen setActive={setActive} play={playMusic}/> : null}
       {loadingScreen ? <LoadingScreen setActive={setActive}/> : null}
       {hackingScreen ? <HackingScreen setActive={setActive} chars={chars}/> : null}
