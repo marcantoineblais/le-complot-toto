@@ -50,11 +50,14 @@ const HackingScreen = ({ setActive, chars }) => {
           imgRef.current.style.display = "block"
           await wait(50)
           imgRef.current.classList.remove('zoom-out')
-          await wait(500)
+          await wait(1000)
+          contentRef.current.classList.add('move-corner-right')
           contentRef.current.classList.add('right-corner')
+          await wait(500)
+          contentRef.current.classList.remove('move-corner-right')
           containerRef.current.style.justifyContent = 'flex-start'
           containerRef.current.style.alignItems = 'flex-end'
-          await wait(1000)
+          await wait(500)
           setInfoBox(true)
           break
 
@@ -70,23 +73,24 @@ const HackingScreen = ({ setActive, chars }) => {
   useEffect(() => {
 
     const blink = async () => {
-      if (isBlinking) {
+      await wait(50)
+      if (rng < 2) {
+        contentRef.current.classList.add('blink')
         await wait(50)
-        if (rng < 2) {
-          contentRef.current.classList.add('blink')
-          await wait(50)
-          contentRef.current.classList.remove('blink')
-        } 
-        let num = random(10)
-        while (num === rng) {
-          num = random(10)
-        }
-        setRng(num)
+        contentRef.current.classList.remove('blink')
+      } 
+      let num = random(10)
+      while (num === rng) {
+        num = random(10)
       }
+      setRng(num)
     }
     
-    blink()
-  })
+    if (isBlinking) {
+      blink()
+    }
+
+  }, [isBlinking, rng])
 
   return (
     <div className="hacking-screen">
