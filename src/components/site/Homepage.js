@@ -50,7 +50,7 @@ const Homepage = () => {
       image.children[i].classList.remove('zoom-in')
     }
     image.style.filter = "none"
-    image.style.overflowY = "scroll"
+    homepageRef.current.style.height = "fit-content"
     setBlurImage(false)
   }
 
@@ -67,15 +67,34 @@ const Homepage = () => {
         </div>
         <div className="folder">
           <div ref={imgRef} className="folder-img">
+            <h2>PROJET: TOTO</h2>
+
+            <h3>SUJET #1:</h3>
             <img
               className="zoom-in"
               src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-toto.png"
               alt="dossier figurant des informations sur Toto"
-            />
+              />
+
+            <h3>SUJET #2:</h3>
             <img
               className="zoom-in"
               src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-max.png"
-              alt="dossier figurant des informations sur Toto"
+              alt="dossier figurant des informations sur Maxou"
+              />
+
+            <h3>SUJET #3:</h3>
+            <img
+              className="zoom-in"
+              src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-monique.png"
+              alt="dossier figurant des informations sur Maxou"
+            />
+
+            <h3>SUJET #4:</h3>
+            <img
+              className="zoom-in"
+              src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-jacques.png"
+              alt="dossier figurant des informations sur Maxou"
             />
           </div>
           {blurImage ? 

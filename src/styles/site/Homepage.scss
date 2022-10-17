@@ -4,20 +4,11 @@
   padding: 10px;
   background-color: $black;
   border: 10px solid $red;
-  height: 100vh;
   color: $red;
   font-family: ubuntu;
+  height: 100%;
   z-index: 1;
   
-  *::-webkit-scrollbar{
-    width: 0.5em;
-  }
-
-  *::-webkit-scrollbar-thumb{
-    width: 0.5em;
-    background-color: $red;
-  }
-
   .container {
     display: flex;
     align-items: center;
@@ -39,6 +30,7 @@
 
   h3 {
     margin-top: 0.5em;
+    margin-bottom: calc(-1em + 4px);
     text-align: justify;
   }
 
@@ -47,8 +39,14 @@
     width: 100%;
     height: 100%;
     flex-grow: 1;
-    overflow-x: hidden;
+    overflow: hidden;
     
+    h2 {
+      text-align: center;
+      color: $red;
+      margin-bottom: 0;
+    }
+
     .folder-img {
       width: 100%;
       height: 100%;
@@ -56,7 +54,6 @@
       flex-direction: column;
       gap: 1em;
       filter: blur(16px) brightness(0.3);
-      overflow-y: hidden;
     }
 
     img {
@@ -66,24 +63,22 @@
     }
 
     .eye{
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
-      z-index: 1;
-    }
-    
-    .eye {
       width: 100px;
       transform: translate(-50%, -50%);
       cursor: pointer;
+      z-index: 1;
 
       h3 {
         margin-bottom: -1em;
-        text-align: center;
         color: $black;
       }
     }
+    
 
+    text-align: center;
     .zoom-in {
       transform: scale(1.2);
       transform-origin: top;
