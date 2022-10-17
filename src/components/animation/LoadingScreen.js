@@ -57,6 +57,7 @@ const LoadingScreen = ({ setActive }) => {
             <div className="white-dot" ref={dot2}></div>
             <div className="white-dot" ref={dot3}></div>
           </div>
+        <p id="mute">(CLIQUEZ SUR L'ÉCRAN POUR FERMER L'AUDIO)</p>
         </div>
       </div>
     </div>

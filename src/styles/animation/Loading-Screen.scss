@@ -4,6 +4,15 @@
   width: 100%;
   height: 100%;
   
+  #mute {
+    position: fixed;
+    bottom: 1em;
+    width: 100%;
+    text-align: center;
+    color: $soft-white;
+    z-index: 1;
+  }
+
   .black-bg {
     background-color: $black;
     width: 100%;
