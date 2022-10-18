@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { wait } from "../../helpers"
 
 const Homepage = () => {
@@ -96,6 +97,33 @@ const Homepage = () => {
               src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/dossier-jacques.png"
               alt="dossier figurant des informations sur Maxou"
             />
+
+            <h3>OBJECTIFS DU PROJET:</h3>
+            <p>
+              Le projet TOTO fut mis en place en 1980 suite aux nombreux échecs du gouvernement Français visant à contrôler
+              le mental et la personnalité des individus. Le but réel de ces différents projets était toujours le même, prendre le
+              pouvoir des gouvernements des puissances mondiales sans être repéré. Les nombreuses avancées technologiques dans le
+              domaine de la bio-mécanique ont permis la création du projet TOTO, qui offre une alternative au contrôle mental. Grâce
+              au travail de nombreux scientifiques, le projet TOTO est un succès total. Il est désormais possible de créer des clones
+              et de les programmer afin de remplacer n'importe quels individus.
+            </p>
+
+            <h3>RÉSULTATS DU PROJET:</h3>
+            <p>
+              En 1981, nom de code: "POUPOUNE" est officiellement enceinte du premier sujet. À ce moment, il est clair que 
+              nom de code: "TOTO" est en parfaite santé et possède les bons attributs génétiques pour être répliqué avec succès.
+              Le premier clone, nom de code: "MAXOU", fut conçu in vitro quelques semaines plus tard. Il est la parfaite copie de "TOTO",
+              mais l'équipe de scientique à légèrement modifié son ADN afin de le rendre plus vulnérable au conditionnement qui 
+              allait suivre sa naissance.
+            </p>
+
+            <h3>PROCESSUS ET TEST CLINIQUES</h3>
+            <p>
+              Il n'existe que très peu de preuves sur l'existence du projet, mais l'équipe à conserver un de leur serveur de donnés actif.
+              Utilisez cette connexion sécurisé pour accéder aux détails du projet: TOTO.
+            </p>
+
+            <Link to='/serveur/654654544hghgfdvfdsvfdshgsgfdsdfhuiowuyrbdjnbs/private'>SE CONNECTER AU SERVEUR</Link>
           </div>
           {blurImage ? 
             <div className="eye">
