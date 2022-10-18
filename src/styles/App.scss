@@ -10,6 +10,8 @@
 
 @import url('./site/Homepage.scss');
 
+@import url('./server/Server.scss');
+
 .animation {
   height: 100%;
 }
@@ -21,7 +23,6 @@
   height: 100%;
   max-width: 900px;
   background: none;
-
 }
 
 .blink {
