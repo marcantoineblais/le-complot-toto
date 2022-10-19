@@ -85,6 +85,10 @@ const Server = () => {
   }, [])
 
   useEffect(() => {
+    const dateObj = new Date().toString().split(' ')
+    setDate(dateObj.slice(1, 4).join(' '))
+    setTime(dateObj[4].slice(0, 5))
+    
     const timeTimer = setInterval(() => {
       const dateObj = new Date().toString().split(' ')
       setDate(dateObj.slice(1, 4).join(' '))
@@ -252,17 +256,15 @@ const Server = () => {
           onTouchMove={(e) => dragCell(e)}
           onDoubleClick={() => openWindow(content)}
         >
-          {
-            content ?
-              <div className="icon">
-                <img
-                  src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/icons/folder-icon.svg"
-                  alt="folder icon"
-                /> 
-                <p>{content.title}</p>
-              </div>
-            : null
-          }
+          {content ? ( 
+            <div className="icon">
+              <img
+                src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/icons/folder-icon.svg"
+                alt="folder icon"
+              /> 
+              <p>{content.title}</p>
+            </div>
+          ) : null}
 
         </div>)
     }
@@ -309,6 +311,7 @@ const Server = () => {
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Documents</button>
                 <a href="https://cssgames.herokuapp.com/games/1" target="_blank" rel="noreferrer">Games</a>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Applications</button>
+                <Link to="/">Replay intro</Link>
               </div>
               <Link to="/truth">Logout</Link>
             </div>
