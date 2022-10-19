@@ -100,12 +100,6 @@ const Server = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (activeWindow) {
-      setStartMenuActive(false)
-    }
-  }, [activeWindow, startMenuActive])
-
   const highlightCell = (e, content) => {
     if (content) {
       const element = e.currentTarget || e.target
@@ -307,7 +301,7 @@ const Server = () => {
           <div className="start-menu">
             <button onClick={() => setStartMenuActive(!startMenuActive)}>Start</button>
             <div className="menu" style={{ display: startMenuActive ? 'flex' : 'none' }}>
-              <div className="app-menu">
+              <div className="app-menu" onClick={() => setStartMenuActive(false)}>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Documents</button>
                 <a href="https://cssgames.herokuapp.com/games/1" target="_blank" rel="noreferrer">Games</a>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Applications</button>
