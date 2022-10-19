@@ -42,6 +42,7 @@ const Server = () => {
       description: "POUPOUNE et GROSPÈRE avec 3 clones créés dans le but de fournir des organes et tissus si jamais le sujet original venait à être âbimé. Plusieurs membres du projet questionnent le côté étique de cette procédure."
     },
   ]
+  
   const [numOfCells, setNumOfCells] = useState(0)
   const [sourceOrder, setSourceOrder] = useState(null)
   const [cellHTML, setCellHTML] = useState(null)
