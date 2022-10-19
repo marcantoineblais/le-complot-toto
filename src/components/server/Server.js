@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import parse from 'html-react-parser'
 import Window from "./Window"
+import { Link } from "react-router-dom"
 
 const Server = () => {
 
@@ -39,9 +40,16 @@ const Server = () => {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/piece-de-rechange.jpg',
       alt: '3 enfants et 2 parents',
       title: 'Pièces de rechange',
-      description: "POUPOUNE et GROSPÈRE avec 3 clones créés dans le but de fournir des organes et tissus si jamais le sujet original venait à être âbimé. Plusieurs membres du projet questionnent le côté étique de cette procédure."
+      description: "POUPOUNE et GROSPÈRE avec 3 clones créés dans le but de fournir des organes et tissus si jamais le sujet original venait à être âbimé. Plusieurs membres du projet questionnent le côté éthique de cette procédure."
     },
   ]
+
+  const unauthorizedAccess = {
+    image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/icons/acces-interdit.webp',
+    alt: 'pancarte acces interdit',
+    title: 'Unauthorised access',
+    description: 'Unauthorised access: PERMISSION DENIED'
+  }
   
   const [numOfCells, setNumOfCells] = useState(0)
   const [sourceOrder, setSourceOrder] = useState(null)
@@ -50,6 +58,9 @@ const Server = () => {
   const [positionOffset, setPositionOffset] = useState(null)
   const [activeWindow, setActiveWindow] = useState(null)
   const [activeElement, setActiveElement] = useState(null)
+  const [startMenuActive, setStartMenuActive] = useState(false)
+  const [time, setTime] = useState(null)
+  const [date, setDate] = useState(null)
 
   const desktopRef = useRef()
 
@@ -72,6 +83,24 @@ const Server = () => {
       setNumOfCells(width * height)
     }
   }, [])
+
+  useEffect(() => {
+    const timeTimer = setInterval(() => {
+      const dateObj = new Date().toString().split(' ')
+      setDate(dateObj.slice(1, 4).join(' '))
+      setTime(dateObj[4].slice(0, 5))
+    }, 1000)
+
+    return () => {
+      clearTimeout(timeTimer)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (activeWindow) {
+      setStartMenuActive(false)
+    }
+  }, [activeWindow, startMenuActive])
 
   const highlightCell = (e, content) => {
     if (content) {
@@ -133,6 +162,10 @@ const Server = () => {
         )
       }).pop()
 
+      if (!targetCell) {
+        return
+      }
+
       const targetOrder = parseInt(targetCell.style.order)
       const sourceCell = elements.filter(el => parseInt(el.style.order) === sourceOrder).pop()
       if (!targetCell.innerHTML) {
@@ -179,6 +212,13 @@ const Server = () => {
       }
       sourceCell.style.order = targetOrder
     }
+    setSourceOrder(null)
+    setCellHTML(null)
+    setActivePosition(null)
+    setPositionOffset(null)
+  }
+
+  const resetDrag = () => {
     setSourceOrder(null)
     setCellHTML(null)
     setActivePosition(null)
@@ -250,12 +290,33 @@ const Server = () => {
   }
 
   return (
-    <div className="server">
+    <div
+      className="server"
+      onMouseUp={() => resetDrag()}
+      onTouchEnd={() => resetDrag()}
+    >
       <div className="container">
-        <div ref={desktopRef} className="desktop">
+        <div ref={desktopRef} className="desktop" onClick={() => setStartMenuActive(false)}>
           {activeWindow ? <Window content={activeWindow} setActiveWindow={setActiveWindow} /> : null}
           {renderedSpace()}
           {cellHTML ? renderedDraggedIcon() : null}
+        </div>
+        <div className="taskbar">
+          <div className="start-menu">
+            <button onClick={() => setStartMenuActive(!startMenuActive)}>Start</button>
+            <div className="menu" style={{ display: startMenuActive ? 'flex' : 'none' }}>
+              <div className="app-menu">
+                <button onClick={() => setActiveWindow(unauthorizedAccess)}>Documents</button>
+                <a href="https://cssgames.herokuapp.com/games/1" target="_blank" rel="noreferrer">Games</a>
+                <button onClick={() => setActiveWindow(unauthorizedAccess)}>Applications</button>
+              </div>
+              <Link to="/truth">Logout</Link>
+            </div>
+          </div>
+          <div className="clock">
+            <h3>{time}</h3>
+            <h3>{date}</h3>
+          </div>
         </div>
       </div>
     </div>
