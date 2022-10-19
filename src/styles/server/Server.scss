@@ -5,10 +5,11 @@
   height: 100%;
   max-height: 100%;
   background-color: $black;
+  position: relative;
+  overflow: hidden;
   
   .container {
     background-color: $blue;
-    
   }
 
   .desktop {
@@ -27,6 +28,10 @@
     height: 80px;
   }
 
+  .highlight {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
   .icon {
     display: flex;
     flex-direction: column;
@@ -39,7 +44,7 @@
 
     img {
       object-fit: contain;
-      height: 60px;
+      height: 50px;
       margin: 0;
       pointer-events: none;
       touch-action: none;
@@ -50,12 +55,18 @@
     }
     
     p {
-      margin: -8px;
+      margin: -4px;
       color: $soft-white;
       font-size: 12px;
       width: 76px;
       height: fit-content;
       text-align: center;
     }
+
+  }
+
+  .active {
+    position: absolute;
+    opacity: 0.5;
   }
 }

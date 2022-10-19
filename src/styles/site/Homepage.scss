@@ -81,10 +81,10 @@
     }
 
     .eye{
-      position: fixed;
+      position: absolute;
       top: 50%;
       left: 50%;
-      width: 100px;
+      width: 100px; 
       transform: translate(-50%, -50%);
       cursor: pointer;
       z-index: 1;
