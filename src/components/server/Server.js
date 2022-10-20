@@ -51,6 +51,16 @@ const Server = () => {
     title: 'Unauthorised access',
     description: 'Unauthorised access: PERMISSION DENIED'
   }
+
+  const inception = {
+    title: 'Inception',
+    component: <iframe src="https://le-complot-toto.wiki" title="Inception" style={{ height: '80vw' }} />
+  }
+
+  const browser = {
+    title: 'Internet explorer',
+    component: <iframe src="https://bing.com" title="bing" style={{ height: '80vw' }} />
+  }
   
   const [code, setCode] = useState({})
   const [numOfCells, setNumOfCells] = useState(0)
@@ -317,11 +327,13 @@ const Server = () => {
             <button onClick={() => setStartMenuActive(!startMenuActive)}>Start</button>
             <div className="menu" style={{ display: startMenuActive ? 'flex' : 'none' }}>
               <div className="app-menu" onClick={() => setStartMenuActive(false)}>
+                <button onClick={() => setActiveWindow(browser)}>Internet Explorer</button>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Documents</button>
                 <a href="https://cssgames.herokuapp.com/games/1" target="_blank" rel="noreferrer">Games</a>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Applications</button>
                 <Link to="/">Replay intro</Link>
                 <button onClick={() => setActiveWindow(code)}>Code Source</button>
+                <button onClick={() => setActiveWindow(inception)}>Inception</button>
               </div>
               <Link to="/truth">Logout</Link>
             </div>

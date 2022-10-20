@@ -10,8 +10,8 @@ const Window = ({ content, setActiveWindow }) => {
         </div>
         <div className="content">
           {content.image ? <img src={content.image} alt={content.alt} /> : null}
-          {content.iframe ? <iframe title="tetris" src="https://cssgames.herokuapp.com/games/1"></iframe> : null}
-          <p>{content.description}</p>
+          {content.component ? content.component : null}
+          {content.description ? <p>{content.description}</p> : null}
         </div>
       </div>
     </div>
