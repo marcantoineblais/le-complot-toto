@@ -29,8 +29,7 @@
   }
 
   h3 {
-    margin-top: 0.5em;
-    margin-bottom: calc(-1em + 4px);
+    margin: 0.5em 0 2em;
     text-align: justify;
   }
 
@@ -45,6 +44,10 @@
       text-align: center;
       color: $red;
       margin-bottom: 0;
+    }
+
+    h3 {
+      margin-bottom: calc(-1em + 4px);
     }
 
     p {
@@ -93,6 +96,7 @@
         margin-bottom: -1em;
         color: $black;
       }
+      
     }
     
 
