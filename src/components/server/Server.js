@@ -54,12 +54,12 @@ const Server = () => {
 
   const inception = {
     title: 'Inception',
-    component: <iframe src="https://le-complot-toto.wiki" title="Inception" style={{ height: '80vw' }} />
+    component: <iframe src="https://le-complot-toto.wiki" title="Inception" style={{ height: '80vh', width: '100%' }} />
   }
 
   const browser = {
     title: 'Internet explorer',
-    component: <iframe src="https://bing.com" title="bing" style={{ height: '80vw' }} />
+    component: <iframe src="https://bing.com" title="bing" style={{ height: '80vh', width: '100%' }} />
   }
   
   const [code, setCode] = useState({})
