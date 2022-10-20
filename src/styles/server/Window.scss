@@ -12,18 +12,30 @@
   
   .window {
     width: 100%;
-    height: 100%;
     background-color: $soft-white;
     border-radius: 4px;
     
     .content {
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
-
+    
     p {
       margin: 0;
       padding: 1em;
+      max-height: 60vh;
+      overflow-y: scroll;
+    }
+     
+    *::-webkit-scrollbar{
+      width: 1em;
+      background-color: $grey;
+    }
+      
+    *::-webkit-scrollbar-thumb{
+      width: 1em;
+      background-color: $soft-grey;
     }
 
     img, iframe {

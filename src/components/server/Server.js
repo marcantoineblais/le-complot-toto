@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import parse from 'html-react-parser'
 import Window from "./Window"
 import { Link } from "react-router-dom"
+import raw from './code.txt'
 
 const Server = () => {
 
@@ -51,6 +52,7 @@ const Server = () => {
     description: 'Unauthorised access: PERMISSION DENIED'
   }
   
+  const [code, setCode] = useState({})
   const [numOfCells, setNumOfCells] = useState(0)
   const [sourceOrder, setSourceOrder] = useState(null)
   const [cellHTML, setCellHTML] = useState(null)
@@ -85,6 +87,19 @@ const Server = () => {
   }, [])
 
   useEffect(() => {
+    const reader = async () => {
+      const file = await fetch(raw)
+      const text = await file.text()
+      setCode({
+        image: null,
+        alt: null,
+        title: 'Code Source',
+        description: text
+      })
+    }
+
+    reader()
+
     const dateObj = new Date().toString().split(' ')
     setDate(dateObj.slice(1, 4).join(' '))
     setTime(dateObj[4].slice(0, 5))
@@ -306,6 +321,7 @@ const Server = () => {
                 <a href="https://cssgames.herokuapp.com/games/1" target="_blank" rel="noreferrer">Games</a>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Applications</button>
                 <Link to="/">Replay intro</Link>
+                <button onClick={() => setActiveWindow(code)}>Code Source</button>
               </div>
               <Link to="/truth">Logout</Link>
             </div>
