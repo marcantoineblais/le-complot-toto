@@ -8,12 +8,12 @@
   box-sizing: border-box;
 }
 
-*::-webkit-scrollbar{
+body::-webkit-scrollbar{
   width: 5px;
   background-color: $black;
 }
 
-*::-webkit-scrollbar-thumb{
+body::-webkit-scrollbar-thumb{
   width: 0.5em;
   background-color: $red;
 }

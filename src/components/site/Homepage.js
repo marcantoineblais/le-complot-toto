@@ -123,7 +123,7 @@ const Homepage = () => {
               Utilisez cette connexion sécurisé pour accéder aux détails du projet: TOTO.
             </p>
 
-            <Link to='/serveur/654654544hghgfdvfdsvfdshgsgfdsdfhuiowuyrbdjnbs/private'>SE CONNECTER AU SERVEUR</Link>
+            <Link to='/server'>SE CONNECTER AU SERVEUR</Link>
           </div>
           {blurImage ? 
             <div className="eye">

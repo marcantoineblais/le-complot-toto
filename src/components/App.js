@@ -10,7 +10,7 @@ const App = () => {
         <Routes>
             <Route path="/" exact element={<Animation />} />
             <Route path="/truth" element={<Homepage />} />
-            <Route path="/serveur/654654544hghgfdvfdsvfdshgsgfdsdfhuiowuyrbdjnbs/private" element={<Server />} />
+            <Route path="/server/" element={<Server />} />
         </Routes>
     </BrowserRouter>
   )
