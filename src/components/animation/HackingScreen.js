@@ -51,13 +51,8 @@ const HackingScreen = ({ setActive, chars }) => {
           await wait(50)
           imgRef.current.classList.remove('zoom-out')
           await wait(500)
-          contentRef.current.classList.add('move-corner-right')
           contentRef.current.classList.add('right-corner')
-          await wait(500)
-          contentRef.current.classList.remove('move-corner-right')
-          containerRef.current.style.justifyContent = 'flex-start'
-          containerRef.current.style.alignItems = 'flex-end'
-          await wait(500)
+          await wait(1000)
           setInfoBox(true)
           break
 
