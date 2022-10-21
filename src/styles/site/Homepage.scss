@@ -49,6 +49,7 @@
     }
 
     h3 {
+      text-align: left;
       margin-bottom: calc(-1em + 4px);
     }
 
@@ -95,14 +96,13 @@
       z-index: 1;
 
       h3 {
+        text-align: center;
         margin-bottom: -1em;
         color: $black;
       }
       
     }
     
-
-    text-align: center;
     .zoom-in {
       transform: scale(1.2);
       transform-origin: top;
