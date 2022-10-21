@@ -117,7 +117,7 @@ const Homepage = () => {
               allait suivre sa naissance.
             </p>
 
-            <h3>PROCESSUS ET TEST CLINIQUES</h3>
+            <h3>PROCESSUS ET TEST CLINIQUES:</h3>
             <p>
               Il n'existe que très peu de preuves sur l'existence du projet, mais l'équipe à conserver un de leur serveur de donnés actif.
               Utilisez cette connexion sécurisé pour accéder aux détails du projet: TOTO.

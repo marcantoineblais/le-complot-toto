@@ -35,7 +35,7 @@ const Server = () => {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/message-secret.jpg',
       alt: 'texte illisible écrit par un enfant',
       title: 'Message secret',
-      description: "Message secret d'un des clones qui a réussi à s'enfuire du laboratoire #2 durant son adolescence. Ne nous savons toujours pas à ce jour ce que signifie le message."
+      description: "Message secret d'un des clones qui a réussi à s'enfuire du laboratoire #2 durant son adolescence. Nous ne savons pas à ce jour ce que signifie le message."
     },
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/piece-de-rechange.jpg',
