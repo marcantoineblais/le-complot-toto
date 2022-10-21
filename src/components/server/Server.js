@@ -316,13 +316,13 @@ const Server = () => {
       onMouseUp={() => resetDrag()}
       onTouchEnd={() => resetDrag()}
     >
-      <div className="container">
-        <div ref={desktopRef} className="desktop" onClick={() => setStartMenuActive(false)}>
-          {activeWindow ? <Window content={activeWindow} setActiveWindow={setActiveWindow} /> : null}
-          {renderedSpace()}
-          {cellHTML ? renderedDraggedIcon() : null}
-        </div>
-        <div className="taskbar">
+      <div ref={desktopRef} className="desktop" onClick={() => setStartMenuActive(false)}>
+        {activeWindow ? <Window content={activeWindow} setActiveWindow={setActiveWindow} /> : null}
+        {renderedSpace()}
+        {cellHTML ? renderedDraggedIcon() : null}
+      </div>
+      <div className="taskbar">
+        <div className="taskbar-container">
           <div className="start-menu">
             <button onClick={() => setStartMenuActive(!startMenuActive)}>Start</button>
             <div className="menu" style={{ display: startMenuActive ? 'flex' : 'none' }}>

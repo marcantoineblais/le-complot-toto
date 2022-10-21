@@ -1,6 +1,7 @@
 import React from "react"
 
 const Window = ({ content, setActiveWindow }) => {
+
   return (
     <div className="window-container">
       <div className="window">
