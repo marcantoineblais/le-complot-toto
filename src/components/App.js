@@ -7,15 +7,27 @@ import Server from "./server/Server"
 const App = () => {
 
   useEffect(() => {
-    const body = document.querySelector('body')
-    if (body.clientWidth >= 540) {
-      body.style.fontSize = '16px'
-    } else if (body.clientWidth >= 380) {
-      body.style.fontSize = '14px'
-    } else if (body.clientWidth < 300) {
-      body.style.fontSize = '10px'
+
+    const setFontSize = () => {
+      const body = document.querySelector('body')
+      if (body.clientWidth >= 540) {
+        body.style.fontSize = '16px'
+      } else if (body.clientWidth >= 380) {
+        body.style.fontSize = '14px'
+      } else if (body.clientWidth >= 300) {
+        body.style.fontSize = '12px'
+      } else if (body.clientWidth < 300) {
+        body.style.fontSize = '10px'
+      }
     }
-  }, [])
+    
+    setFontSize()
+    window.addEventListener('resize', setFontSize)
+
+    return () => {
+      window.removeEventListener('resize', setFontSize)
+    }
+}, [])
 
   return (
     <BrowserRouter>
