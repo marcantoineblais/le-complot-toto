@@ -119,7 +119,7 @@ const Homepage = () => {
 
             <h3>PROCESSUS ET TEST CLINIQUES:</h3>
             <p>
-              Il n'existe que très peu de preuves sur l'existence du projet, mais l'équipe à conserver un de leur serveur de donnés actif.
+              Il n'existe que très peu de preuves sur l'existence du projet, mais l'équipe à conserver un de leur serveur de données actif.
               Utilisez cette connexion sécurisée pour accéder aux détails du projet: TOTO.
             </p>
 
