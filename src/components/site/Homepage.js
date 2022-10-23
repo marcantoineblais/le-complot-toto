@@ -110,7 +110,7 @@ const Homepage = () => {
 
             <h3>RÉSULTATS DU PROJET:</h3>
             <p>
-              En 1981, nom de code: "POUPOUNE" est officiellement enceinte du premier sujet. À ce moment, il est clair que 
+              En 1982, nom de code: "POUPOUNE" est officiellement enceinte du premier sujet. À ce moment, il est clair que 
               nom de code: "TOTO" est en parfaite santé et possède les bons attributs génétiques pour être répliqué avec succès.
               Le premier clone, nom de code: "MAXOU", fut conçu in vitro quelques semaines plus tard. Il est la parfaite copie de "TOTO",
               mais l'équipe de scientique à légèrement modifié son ADN afin de le rendre plus vulnérable au conditionnement qui 
