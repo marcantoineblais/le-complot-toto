@@ -6,19 +6,26 @@
   flex-wrap: wrap;
 
   .icon {
-    width: 160px;
+    width: 80px;
     margin: 4px;
+    touch-action: auto;
+    -ms-touch-action: auto;
+    user-select: auto;
+    -webkit-user-select: auto;
+    -ms-user-select: auto;
     
     img {
       background-color: transparent;
       object-fit: cover;
-      height: 160px;
+      height: 80px;
     }
 
     p {
       color: $black;
       margin-top: -12px;
+      max-height: 6em;
       overflow-wrap: break-word;
+      overflow: hidden;
     }
   }
 
