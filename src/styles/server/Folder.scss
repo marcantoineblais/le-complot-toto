@@ -1,0 +1,28 @@
+@import '../utilities/variables.scss';
+
+.folder {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .icon {
+    width: 160px;
+    margin: 4px;
+    
+    img {
+      background-color: transparent;
+      object-fit: cover;
+      height: 160px;
+    }
+
+    p {
+      color: $black;
+      margin-top: -12px;
+      overflow-wrap: break-word;
+    }
+  }
+
+  .window {
+    width: 100%;
+  }
+}

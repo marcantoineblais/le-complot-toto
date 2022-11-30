@@ -3,42 +3,49 @@ import parse from 'html-react-parser'
 import Window from "./Window"
 import { Link } from "react-router-dom"
 import raw from './code.txt'
+import Folder from "./Folder"
 
 const Server = () => {
 
   const spaceContent = [
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/3-clones.jpeg',
+      thumb: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/thumbnails/3-clones.jpeg',
       alt: '3 clones, age de 8ans',
       title: 'Plus que deux',
       description: "Nous estimons qu'un total de 49 clones ont été produit depuis le début du projet. La preuve ici qu'ils sont plus que deux."
     },
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/membres-contraries.jpeg',
+      thumb: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/thumbnails/membres-contraries.jpeg',
       alt: '2 membres du conseil mécontent du projet',
       title: 'Membres contrariés',
       description: "Plusieurs membres du projet TOTO ont été troublé par les résultats de l'expérience. Nous voyons ici deux jeunes hommes qui regrettent leur implication dans le projet."
     },
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/toto-et-maxou.jpg',
+      thumb: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/thumbnails/toto-et-maxou.jpg',
       alt: 'toto et maxou bébé',
       title: 'TOTO et MAXOU',
       description: "TOTO et MAXOU qui sont en parfaite santé. Un vent d'espoir pour le futur du projet."
     },
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/test-animaux.jpg',
+      thumb: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/thumbnails/test-animaux.jpg',
       alt: 'POUPOUNE et les test primaires',
       title: 'Nom de code: WOOF',
       description: "POUPOUNE et les deux premiers clones canins survivant à la procédure. Tout semble indiquer qu'ils sont en parfaite santé."
     },
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/message-secret.jpg',
+      thumb: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/thumbnails/message-secret.jpg',
       alt: 'texte illisible écrit par un enfant',
       title: 'Message secret',
       description: "Message secret d'un des clones qui a réussi à s'enfuire du laboratoire #2 durant son adolescence. Nous ne savons pas à ce jour ce que signifie le message."
     },
     {
       image: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/images/piece-de-rechange.jpg',
+      thumb: 'https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/thumbnails/piece-de-rechange.jpg',
       alt: '3 enfants et 2 parents',
       title: 'Pièces de rechange',
       description: "POUPOUNE et GROSPÈRE avec 3 clones créés dans le but de fournir des organes et tissus si jamais le sujet original venait à être âbimé. Plusieurs membres du projet questionnent le côté éthique de cette procédure."
@@ -61,6 +68,11 @@ const Server = () => {
     title: 'Internet explorer',
     component: <iframe src="https://bing.com" title="bing" />
   }
+
+  const images = {
+    title: 'Images',
+    component: <Folder folderName='party' />
+  }
   
   const [code, setCode] = useState({})
   const [numOfCells, setNumOfCells] = useState(0)
@@ -77,7 +89,6 @@ const Server = () => {
   const desktopRef = useRef()
 
   useEffect(() => {
-    
     const desktop = desktopRef.current
     const width = Math.floor(desktop.clientWidth / 80)
     const height = Math.floor(desktop.clientHeight / 80)
@@ -278,8 +289,8 @@ const Server = () => {
           {content ? ( 
             <div className="icon">
               <img
-                src="https://nyc3.digitaloceanspaces.com/marc-cloud-storage/Shared/le-complot-toto/icons/folder-icon.svg"
-                alt="folder icon"
+                src={content.thumb}
+                alt="thumbnail"
               /> 
               <p>{content.title}</p>
             </div>
@@ -329,8 +340,7 @@ const Server = () => {
               <div className="app-menu" onClick={() => setStartMenuActive(false)}>
                 <button onClick={() => setActiveWindow(browser)}>Internet Explorer</button>
                 <button onClick={() => setActiveWindow(unauthorizedAccess)}>Documents</button>
-                <a href="https://cssgames.herokuapp.com/games/1" target="_blank" rel="noreferrer">Games</a>
-                <button onClick={() => setActiveWindow(unauthorizedAccess)}>Applications</button>
+                <button onClick={() => setActiveWindow(images)}>Images</button>
                 <Link to="/">Replay intro</Link>
                 <button onClick={() => setActiveWindow(code)}>Code Source</button>
                 <button onClick={() => setActiveWindow(inception)}>Inception</button>
