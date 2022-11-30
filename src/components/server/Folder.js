@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Window from "./Window"
 
 const Folder = ({ folderName }) => {
@@ -6,6 +6,8 @@ const Folder = ({ folderName }) => {
   const [images, setImages] = useState([])
   const [thumbnails, setThumbnails] = useState([])
   const [imgWindow, setImgWindow] = useState(null)
+
+  const folderRef = useRef()
 
   useEffect(() => {
     const renderedContent = async () => {
@@ -38,6 +40,23 @@ const Folder = ({ folderName }) => {
     setImgWindow(<Window content={content} setActiveWindow={setImgWindow} />)
   }
 
+  const highlightIcon = (e) => {
+    const icons = folderRef.current.children
+    for (let i = 0; i < icons.length; i++) {
+      icons[i].classList.remove('highlight')
+    }
+    e.currentTarget.classList.add('highlight')
+  }
+
+  const removeHighlight = (e) => {
+    const icons = folderRef.current.children
+    if (e.target === folderRef.current) {
+      for (let i = 0; i < icons.length; i++) {
+        icons[i].classList.remove('highlight')
+      }
+    }
+  }
+
   const renderedImg = () => {
     return thumbnails.map((thumb, i) => {
       const url = 'https://marc-cloud-storage.nyc3.digitaloceanspaces.com/'
@@ -48,6 +67,7 @@ const Folder = ({ folderName }) => {
       return (
         <div
           className="icon"
+          onClick={(e) => highlightIcon(e)}
           onDoubleClick={() => openImage(content)}
           key={thumb}
         >
@@ -59,7 +79,11 @@ const Folder = ({ folderName }) => {
   }
 
   return (
-    <div className="folder">
+    <div
+      ref={folderRef}
+      className="folder"
+      onClick={(e) => removeHighlight(e)}
+    >
       {imgWindow}
       {renderedImg()}
     </div>

@@ -2,7 +2,7 @@
 
 .folder {
   display: flex;
-  justify-content: space-around;
+  justify-content: baseline;
   flex-wrap: wrap;
 
   .icon {
@@ -30,6 +30,12 @@
   }
 
   .window {
-    width: 100%;
+    position: fixed;
+    width: 98vw;
+    max-height: 70vh;
+
+    img {
+      height: 100%;
+    }
   }
 }
